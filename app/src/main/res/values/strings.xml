@@ -5,6 +5,7 @@
     <string name="header_desc">Navigation header</string>
     <string name="emi_calculator">EMI Calculator</string>
     <string name="Input"> Input</string>
+    <string name="Result"> Result</string>
     <string name="amount">Loan Amount: </string>
     <string name="interest">Interest %(Per Year): </string>
     <string name="period">No. of Months: </string>
@@ -12,4 +13,8 @@
     <string name="calculate">Calculate</string>
     <string name="reset">Reset</string>
     <string name="compare">Compare</string>
+
+    <string name="emi_per_month">EMI Per Month: </string>
+    <string name="total_interest">Total Interest: </string>
+    <string name="total_amount">Total Amount: </string>
 </resources>

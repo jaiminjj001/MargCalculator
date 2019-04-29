@@ -28,7 +28,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +55,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/interest"
         android:layout_toRightOf="@+id/interest"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/amount_input" />
 
@@ -79,7 +79,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/period"
         android:layout_toRightOf="@+id/period"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/interest_input" />
 
@@ -95,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/interest" />
 
     <EditText
-        android:id="@+id/precessing_fees_input"
+        android:id="@+id/processing_fees_input"
         android:layout_width="180dp"
         android:layout_height="38dp"
         android:layout_gravity="end"
@@ -103,7 +103,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/processing_fees"
         android:layout_toRightOf="@+id/processing_fees"
-        android:inputType="text"
+        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/period_input" />
 
@@ -119,6 +119,8 @@
         app:layout_constraintTop_toBottomOf="@+id/period" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
+        style="?attr/buttonBarStyle"
         android:layout_width="403dp"
         android:layout_height="72dp"
         android:layout_marginStart="4dp"
@@ -126,33 +128,152 @@
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/processing_fees"
-        style="?attr/buttonBarStyle">
+        app:layout_constraintTop_toBottomOf="@+id/processing_fees">
 
         <Button
             android:id="@+id/calculate"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/calculate"
-            style="?attr/buttonBarButtonStyle"/>
+            android:text="@string/calculate" />
 
         <Button
             android:id="@+id/reset"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_weight="1"
-            android:text="@string/reset"
-            style="?attr/buttonBarButtonStyle"/>
+            android:text="@string/reset" />
 
         <Button
             android:id="@+id/compare"
+            style="?attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_weight="1"
-            android:text="@string/compare"
-            style="?attr/buttonBarButtonStyle"/>
+            android:text="@string/compare" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/Result"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/Result"
+        android:textSize="22sp"
+        android:textStyle="normal|bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <EditText
+        android:id="@+id/EMI_output"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_toEndOf="@+id/EMI_perMonth"
+        android:layout_toRightOf="@+id/EMI_perMonth"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Result" />
+
+    <TextView
+        android:id="@+id/EMI_perMonth"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/emi_per_month"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Result" />
+
+    <EditText
+        android:id="@+id/processing_fees_output"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_toEndOf="@+id/processing_fees"
+        android:layout_toRightOf="@+id/processing_fees"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EMI_output" />
+
+    <TextView
+        android:id="@+id/total_processing_fees"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/processing_fees"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EMI_perMonth" />
+
+    <EditText
+        android:id="@+id/total_interest_output"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/total_interest"
+        android:layout_toRightOf="@+id/total_interest"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/processing_fees_output" />
+
+    <TextView
+        android:id="@+id/total_interest"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/total_interest"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_processing_fees" />
+
+    <EditText
+        android:id="@+id/total_amount_output"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/total_interest"
+        android:layout_toRightOf="@+id/total_interest"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_interest_output" />
+
+    <TextView
+        android:id="@+id/total_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/total_amount"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/total_interest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
