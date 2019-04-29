@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Marg Calculator</string>
+    <string name="header_title">Marg Corporation Ltd.</string>
+    <string name="header_subtitle">margtechno@gmail.com</string>
+    <string name="header_desc">Navigation header</string>
+    <string name="emi_calculator">EMI Calculator</string>
+    <string name="Input"> Input</string>
+    <string name="amount">Loan Amount: </string>
+    <string name="interest">Interest %(Per Year): </string>
+    <string name="period">No. of Months: </string>
+    <string name="processing_fees">Processing Fees: </string>
+    <string name="calculate">Calculate</string>
+    <string name="reset">Reset</string>
+    <string name="compare">Compare</string>
+</resources>

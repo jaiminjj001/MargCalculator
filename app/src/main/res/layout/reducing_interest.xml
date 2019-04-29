@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:background="@color/colorAccent"
+        android:gravity="start"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/Input"
+        android:textSize="22sp"
+        android:textStyle="normal|bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/amount_input"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:inputType="textPersonName"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginTop="60dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/amount"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input" />
+
+    <EditText
+        android:id="@+id/interest_input"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/interest"
+        android:layout_toRightOf="@+id/interest"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount_input" />
+
+    <TextView
+        android:id="@+id/interest"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/interest"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/amount" />
+
+    <EditText
+        android:id="@+id/period_input"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/period"
+        android:layout_toRightOf="@+id/period"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interest_input" />
+
+    <TextView
+        android:id="@+id/period"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/period"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/interest" />
+
+    <EditText
+        android:id="@+id/precessing_fees_input"
+        android:layout_width="180dp"
+        android:layout_height="38dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@+id/processing_fees"
+        android:layout_toRightOf="@+id/processing_fees"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/period_input" />
+
+    <TextView
+        android:id="@+id/processing_fees"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/processing_fees"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/period" />
+
+    <LinearLayout
+        android:layout_width="403dp"
+        android:layout_height="72dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/processing_fees"
+        style="?attr/buttonBarStyle">
+
+        <Button
+            android:id="@+id/calculate"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/calculate"
+            style="?attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:text="@string/reset"
+            style="?attr/buttonBarButtonStyle"/>
+
+        <Button
+            android:id="@+id/compare"
+            android:layout_width="wrap_content"
+            android:layout_height="72dp"
+            android:layout_weight="1"
+            android:text="@string/compare"
+            style="?attr/buttonBarButtonStyle"/>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
