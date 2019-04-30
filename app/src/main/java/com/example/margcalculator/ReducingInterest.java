@@ -89,7 +89,7 @@ public class ReducingInterest extends Fragment {
         Compare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.view_pager, new CompareEMI());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();

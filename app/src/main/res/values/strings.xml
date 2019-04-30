@@ -5,6 +5,8 @@
     <string name="header_desc">Navigation header</string>
     <string name="emi_calculator">EMI Calculator</string>
     <string name="Input"> Input</string>
+    <string name="bank1">Bank 1</string>
+    <string name="bank2">Bank 2</string>
     <string name="Result"> Result</string>
     <string name="amount">Loan Amount: </string>
     <string name="interest">Interest %(Per Year): </string>
