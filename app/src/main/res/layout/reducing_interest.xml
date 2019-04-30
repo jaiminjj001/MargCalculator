@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/bsc"
+    android:backgroundTint="@color/colorAccent">
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:orientation="vertical">
 
     <TextView
@@ -25,7 +32,7 @@
         android:id="@+id/amount_input"
         android:layout_width="180dp"
         android:layout_height="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:inputType="number"
@@ -38,7 +45,7 @@
         android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/amount"
@@ -125,7 +132,7 @@
         android:layout_height="72dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/processing_fees">
@@ -161,7 +168,7 @@
         android:layout_height="32dp"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorAccent"
         android:gravity="start"
         android:paddingLeft="10dp"
@@ -172,17 +179,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <EditText
+    <TextView
         android:id="@+id/EMI_output"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="38dp"
         android:layout_gravity="end"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@+id/EMI_perMonth"
         android:layout_toRightOf="@+id/EMI_perMonth"
-        android:inputType="number"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Result" />
 
@@ -190,7 +197,7 @@
         android:id="@+id/EMI_perMonth"
         android:layout_width="wrap_content"
         android:layout_height="38dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="30dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/emi_per_month"
@@ -198,9 +205,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Result" />
 
-    <EditText
+    <TextView
         android:id="@+id/processing_fees_output"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="38dp"
         android:layout_gravity="end"
         android:layout_marginTop="5dp"
@@ -208,9 +215,9 @@
         android:layout_marginRight="8dp"
         android:layout_toEndOf="@+id/processing_fees"
         android:layout_toRightOf="@+id/processing_fees"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/EMI_output" />
+        app:layout_constraintTop_toBottomOf="@+id/EMI_output"
+        android:textSize="20sp"/>
 
     <TextView
         android:id="@+id/total_processing_fees"
@@ -224,9 +231,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/EMI_perMonth" />
 
-    <EditText
+    <TextView
         android:id="@+id/total_interest_output"
-        android:layout_width="180dp"
+        android:textSize="20sp"
+        android:layout_width="190dp"
         android:layout_height="38dp"
         android:layout_gravity="end"
         android:layout_marginTop="5dp"
@@ -234,7 +242,6 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/total_interest"
         android:layout_toRightOf="@+id/total_interest"
-        android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/processing_fees_output" />
 
@@ -250,9 +257,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/total_processing_fees" />
 
-    <EditText
+    <TextView
         android:id="@+id/total_amount_output"
-        android:layout_width="180dp"
+        android:layout_width="190dp"
         android:layout_height="38dp"
         android:layout_gravity="end"
         android:layout_marginTop="5dp"
@@ -260,7 +267,7 @@
         android:layout_marginRight="10dp"
         android:layout_toEndOf="@+id/total_interest"
         android:layout_toRightOf="@+id/total_interest"
-        android:inputType="number"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/total_interest_output" />
 
@@ -277,3 +284,4 @@
         app:layout_constraintTop_toBottomOf="@+id/total_interest" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
