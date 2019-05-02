@@ -52,6 +52,8 @@ public class EMICalculator extends AppCompatActivity {
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
             fm.popBackStack();
+//            Intent myIntent = new Intent(getApplicationContext(), EMICalculator.class);
+//            startActivityForResult(myIntent, 0);
         }
         else {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);

@@ -10,11 +10,11 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import static java.lang.Math.pow;
 
@@ -24,10 +24,23 @@ public class ReducingInterest extends Fragment {
     Button Calculate;
     Button Reset;
     Button Compare;
+    Button EMIDetails;
+    Double EMI=0.0;
+    Double TotalAmount=0.0;
+    Double TotalInterest=0.0;
+    Double Processing_fee=0.0;
+    Double Period;
+    Double Interest;
+    Double Amount;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.reducing_interest, container, false);
+
+        EMI = 0.0;
+        TotalAmount = 0.0;
+        TotalInterest = 0.0;
+        Processing_fee = 0.0;
         Calculate = view.findViewById(R.id.calculate);
         Calculate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,28 +51,33 @@ public class ReducingInterest extends Fragment {
                 EditText processing_fee = view.findViewById(R.id.processing_fees_input);
                 EditText emi;
 
-                if(!amount.getText().toString().isEmpty() && !interest.getText().toString().isEmpty() && !period.getText().toString().isEmpty()){
-                Double Amount = Double.valueOf(amount.getText().toString());
-                Double Interest = Double.valueOf(interest.getText().toString());
-                Double Period = Double.valueOf(period.getText().toString());
-                Double Processing_fee = Double.valueOf(processing_fee.getText().toString());
+                if (!amount.getText().toString().isEmpty() && !interest.getText().toString().isEmpty()
+                        && !period.getText().toString().isEmpty() && !processing_fee.getText().toString().isEmpty()) {
+                    Amount = Double.valueOf(amount.getText().toString());
+                    Interest = Double.valueOf(interest.getText().toString());
+                    Period= Double.valueOf(period.getText().toString());
+                    Processing_fee = Double.valueOf(processing_fee.getText().toString());
 
-                Processing_fee =(Processing_fee * Amount)/100;
-                Double EMI = ComputeEMI(Amount,Interest,Period);
-                Double TotalAmount = EMI*Period;
-                Double TotalInterest = (TotalAmount - Amount);
+                    Processing_fee = (Processing_fee * Amount) / 100;
+                    EMI = ComputeEMI(Amount, Interest, Period);
+                    TotalAmount = EMI * Period;
+                    TotalInterest = (TotalAmount - Amount);
 
-                TextView Oamount = view.findViewById(R.id.total_amount_output);
-                TextView Ointerest = view.findViewById(R.id.total_interest_output);
-                TextView Oemi = view.findViewById(R.id.EMI_output);
-                TextView Oprocessing_fee = view.findViewById(R.id.processing_fees_output);
+                    TextView Total_Amount_output = view.findViewById(R.id.total_amount_output);
+                    TextView Total_Interest_output = view.findViewById(R.id.total_interest_output);
+                    TextView EMI_PerMonth = view.findViewById(R.id.EMI_output);
+                    TextView Processing_fees_output = view.findViewById(R.id.processing_fees_output);
 
-                Oamount.setText(String.format("%f",TotalAmount));
-                Ointerest.setText(String.format("%f",TotalInterest));
-                Oemi.setText(String.format("%f",EMI));
-                Oprocessing_fee.setText(String.format("%f",Processing_fee));
-                hideKeyboardFrom(getContext(),view);
-            }}
+                    Total_Amount_output.setText(String.format("%f", TotalAmount));
+                    Total_Interest_output.setText(String.format("%f", TotalInterest));
+                    EMI_PerMonth.setText(String.format("%f", EMI));
+                    Processing_fees_output.setText(String.format("%f", Processing_fee));
+                    hideKeyboardFrom(getContext(), view);
+                }
+                else{
+                    Toast.makeText(getContext(),"Please Fill All the Details",Toast.LENGTH_SHORT).show();
+                }
+            }
         });
 
         Reset = view.findViewById(R.id.reset);
@@ -82,6 +100,11 @@ public class ReducingInterest extends Fragment {
                 interest.setText("");
                 period.setText("");
                 processing_fee.setText("");
+                EMI = 0.0;
+                TotalAmount = 0.0;
+                TotalInterest = 0.0;
+                Processing_fee = 0.0;
+
             }
         });
 
@@ -89,18 +112,41 @@ public class ReducingInterest extends Fragment {
         Compare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getChildFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.view_pager, new CompareEMI());
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.tab_viewer,new ReducingCompare());
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
+            }
+        });
+
+        EMIDetails =view.findViewById(R.id.emi_details);
+        EMIDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EMITable emiTable = new EMITable();
+                Bundle args = new Bundle();
+                if(EMI!=0.0 && TotalAmount!=0.0){
+                    args.putDouble("EMI",EMI);
+                    args.putDouble("TotalAmount",TotalAmount);
+                    args.putDouble("Interest",Interest);
+                    args.putDouble("Period",Period);
+                    args.putDouble("Amount",Amount);
+                    emiTable.setArguments(args);
+                    FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.tab_viewer, emiTable);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+                else{
+                    Toast.makeText(getContext(),"Please Calculate EMI first",Toast.LENGTH_SHORT).show();
+
+                }
+
             }
         });
         return view;
 
     }
-    private void swapFragment(){
-    }
-
     public static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);

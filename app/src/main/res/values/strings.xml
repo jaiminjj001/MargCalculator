@@ -15,6 +15,9 @@
     <string name="calculate">Calculate</string>
     <string name="reset">Reset</string>
     <string name="compare">Compare</string>
+    <string name="share">Share</string>
+    <string name="emi_details">EMI Details</string>
+    <string name="loan_amount">Loan Amount</string>
 
     <string name="emi_per_month">EMI Per Month: </string>
     <string name="total_interest">Total Interest: </string>
