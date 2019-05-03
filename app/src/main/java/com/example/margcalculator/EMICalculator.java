@@ -46,6 +46,7 @@ public class EMICalculator extends AppCompatActivity {
 
             }
         });
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item){

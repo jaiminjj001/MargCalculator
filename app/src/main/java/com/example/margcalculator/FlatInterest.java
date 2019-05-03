@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 public class FlatInterest extends Fragment {
@@ -25,14 +26,13 @@ public class FlatInterest extends Fragment {
     Double TotalAmount=0.0;
     Double TotalInterest=0.0;
     Double Processing_fee=0.0;
-    Double Period;
-    Double Interest;
-    Double Amount;
+    Double Period = 0.0;
+    Double Interest = 0.0;
+    Double Amount = 0.0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.flat_interest, container, false);
-
         EMI = 0.0;
         TotalAmount = 0.0;
         TotalInterest = 0.0;
@@ -58,7 +58,6 @@ public class FlatInterest extends Fragment {
                     TotalInterest = (Interest*Amount*(Period/12))/100;
                     EMI = ComputeEMI(Amount, TotalInterest, Period);
                     TotalAmount = TotalInterest + Amount;
-
 
                     TextView Total_Amount_output = view.findViewById(R.id.Ftotal_amount_output);
                     TextView Total_Interest_output = view.findViewById(R.id.Ftotal_interest_output);
@@ -128,6 +127,7 @@ public class FlatInterest extends Fragment {
                     args.putDouble("Interest",Interest);
                     args.putDouble("Period",Period);
                     args.putDouble("Amount",Amount);
+                    args.putString("EMI Type","Flat");
                     flatEmiTable.setArguments(args);
                     FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.tab_viewer, flatEmiTable);
@@ -138,18 +138,39 @@ public class FlatInterest extends Fragment {
                     Toast.makeText(getContext(),"Please Calculate EMI first",Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
 
+        //retain values
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                FragmentManager manager = getFragmentManager();
+                if(manager!=null){
+                    onFragmentResume();
+                }
             }
         });
         return view;
-
     }
-    public static void hideKeyboardFrom(Context context, View view) {
+    private void onFragmentResume() {
+        if (Amount != 0.0 && Processing_fee != 0.0 && Interest != 0.0 && Period != 0.0) {
+            EditText amount = view.findViewById(R.id.Famount_input);
+            EditText interest = view.findViewById(R.id.Finterest_input);
+            EditText period = view.findViewById(R.id.Fperiod_input);
+            EditText processing_fee = view.findViewById(R.id.Fprocessing_fees_input);
+            amount.setText(Amount.toString());
+            interest.setText(Interest.toString());
+            period.setText(Period.toString());
+            processing_fee.setText(Processing_fee.toString());
+        }
+    }
+    private static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public Double ComputeEMI(Double amount, Double interest, Double period){
+    private Double ComputeEMI(Double amount, Double interest, Double period){
         Double EMI = (amount+interest)/period;
         return EMI;
     }

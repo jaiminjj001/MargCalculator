@@ -102,7 +102,6 @@ public class ReducingCompare extends Fragment {
                     }
                 else{
                     Toast.makeText(getContext(),"Please fill all the Details",Toast.LENGTH_SHORT).show();
-
                 }
                 compareReset = myView.findViewById(R.id.compare_reset);
                 compareReset.setOnClickListener(new View.OnClickListener() {
