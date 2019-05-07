@@ -232,8 +232,8 @@
 
                 <TextView
                     android:id="@+id/Ftotal_processing_fees"
-                    android:layout_width="180dp"
-                    android:layout_height="38dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:paddingLeft="10dp"
