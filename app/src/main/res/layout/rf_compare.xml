@@ -13,32 +13,42 @@
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/RFcompare_ll"
             android:layout_width="match_parent"
             android:layout_height="30dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:gravity="center_horizontal"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <TextView
-                android:id="@+id/Fbank1"
+                android:id="@+id/RFreducingEMI"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:text="@string/bank1"
+                android:text="@string/reducing"
                 android:textStyle="bold"
                 android:textColor="@color/colorAmber_900"
                 android:textSize="20sp"
                 android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/Fbank2"
+                app:layout_constraintEnd_toStartOf="@+id/RFflatEMI"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:layout_editor_absoluteX="220dp"
                 tools:layout_editor_absoluteY="40dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:textColor="@color/buttons"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:text="vs"/>
 
             <TextView
-                android:id="@+id/Fbank2"
+                android:id="@+id/RFflatEMI"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/bank2"
+                android:text="@string/flat"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="@color/main_gradient2"
@@ -47,24 +57,37 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/Fcompare_amount_input"
+            android:id="@+id/RFcompare_amount_input"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
             android:hint="@string/loan_amount"
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_ll"/>
 
         <EditText
-            android:id="@+id/Fcompare_interest_input1"
+            android:id="@+id/RFcompare_interest_input1"
+            android:layout_width="180dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/interest"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/hint"
+            android:textColorHint="@color/hint"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount_input" />
+
+        <EditText
+            android:id="@+id/RFcompare_interest_input2"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
@@ -72,31 +95,14 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_amount_input" />
-
-        <EditText
-            android:id="@+id/Fcompare_interest_input2"
-            android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
-            android:textColorHint="@color/hint"
-            android:hint="@string/interest"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_amount_input" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount_input" />
 
         <EditText
-            android:id="@+id/Fcompare_period_input1"
+            android:id="@+id/RFcompare_period_input1"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
@@ -104,15 +110,14 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_interest_input1" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest_input1" />
 
         <EditText
-            android:id="@+id/Fcompare_period_input2"
+            android:id="@+id/RFcompare_period_input2"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
@@ -120,15 +125,14 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_interest_input2" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest_input2" />
 
         <EditText
-            android:id="@+id/Fcompare_processing_fees_input1"
+            android:id="@+id/RFcompare_processing_fees_input1"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
@@ -136,15 +140,15 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="20dp"
+
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_period_input1" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_period_input1" />
 
         <EditText
-            android:id="@+id/Fcompare_processing_fees_input2"
+            android:id="@+id/RFcompare_processing_fees_input2"
             android:background="@drawable/rounded_inputs"
             android:textColor="@color/hint"
             android:textColorHint="@color/hint"
@@ -152,15 +156,14 @@
             android:layout_width="180dp"
             android:layout_height="38dp"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_period_input2" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_period_input2" />
 
         <LinearLayout
-            android:id="@+id/FlinearLayout"
+            android:id="@+id/RFlinearLayout"
             style="?attr/buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="56dp"
@@ -170,10 +173,10 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_processing_fees_input1">
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_processing_fees_input1">
 
             <Button
-                android:id="@+id/Fcompare_calculate"
+                android:id="@+id/RFcompare_calculate"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -185,7 +188,7 @@
                 android:textSize="22sp"/>
 
             <Button
-                android:id="@+id/Fcompare_reset"
+                android:id="@+id/RFcompare_reset"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -199,20 +202,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Fcompare_EMI_result_ll"
+            android:id="@+id/RFcompare_EMI_result_ll"
             android:orientation="vertical"
             android:background="@drawable/rounded_outputs"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginTop="30dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center_horizontal"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FlinearLayout" >
+            app:layout_constraintTop_toBottomOf="@+id/RFlinearLayout" >
             <TextView
-                android:id="@+id/Fcompare_EMI_perMonth"
+                android:id="@+id/RFcompare_EMI_perMonth"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:paddingLeft="10dp"
@@ -226,7 +227,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/Fcompare_EMI_output1"
+                    android:id="@+id/RFcompare_EMI_output1"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -242,7 +243,7 @@
                     android:textStyle="bold"
                     android:textSize="20sp"/>
                 <TextView
-                    android:id="@+id/Fcompare_EMI_output2"
+                    android:id="@+id/RFcompare_EMI_output2"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -253,20 +254,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Fcompare_TotalInterest_result_ll"
+            android:id="@+id/RFcompare_TotalInterest_result_ll"
             android:orientation="vertical"
             android:background="@drawable/rounded_outputs"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_EMI_result_ll" >
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_EMI_result_ll" >
             <TextView
-                android:id="@+id/Fcompare_total_interest"
+                android:id="@+id/RFcompare_total_interest"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:paddingLeft="10dp"
@@ -280,7 +279,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/Fcompare_total_interest_output1"
+                    android:id="@+id/RFcompare_total_interest_output1"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -296,7 +295,7 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/Fcompare_total_interest_output2"
+                    android:id="@+id/RFcompare_total_interest_output2"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -307,20 +306,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Fcompare_TotalAmount_result_ll"
+            android:id="@+id/RFcompare_TotalAmount_result_ll"
             android:orientation="vertical"
             android:background="@drawable/rounded_outputs"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_TotalInterest_result_ll" >
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_TotalInterest_result_ll" >
             <TextView
-                android:id="@+id/Fcompare_total_amount"
+                android:id="@+id/RFcompare_total_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:paddingLeft="10dp"
@@ -334,7 +331,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/Fcompare_total_amount_output1"
+                    android:id="@+id/RFcompare_total_amount_output1"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -351,7 +348,7 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/Fcompare_total_amount_output2"
+                    android:id="@+id/RFcompare_total_amount_output2"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -362,20 +359,18 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/Fcompare_processing_fees_result_ll"
+            android:id="@+id/RFcompare_processing_fees_result_ll"
             android:orientation="vertical"
             android:background="@drawable/rounded_outputs"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fcompare_TotalAmount_result_ll" >
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_TotalAmount_result_ll" >
             <TextView
-                android:id="@+id/Fcompare_processing_fees"
+                android:id="@+id/RFcompare_processing_fees"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:paddingLeft="10dp"
@@ -389,7 +384,7 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/Fcompare_processing_fees_output1"
+                    android:id="@+id/RFcompare_processing_fees_output1"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"
@@ -405,7 +400,7 @@
                     android:textSize="20sp"/>
 
                 <TextView
-                    android:id="@+id/Fcompare_processing_fees_output2"
+                    android:id="@+id/RFcompare_processing_fees_output2"
                     android:layout_width="180dp"
                     android:layout_height="40dp"
                     android:gravity="center"

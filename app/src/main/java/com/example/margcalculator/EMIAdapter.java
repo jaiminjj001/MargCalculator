@@ -16,6 +16,8 @@ public class EMIAdapter extends FragmentPagerAdapter {
             return new ReducingInterest();
         else if(position == 1)
             return new FlatInterest();
+        else if(position == 2)
+            return new RFCompare();
         else
             return null;
     }
@@ -25,12 +27,14 @@ public class EMIAdapter extends FragmentPagerAdapter {
             return "Reducing Interest";
         else if(position == 1)
             return "Flat Interest";
+        else if(position == 2)
+            return "RFCompare";
         else
             return null;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 }

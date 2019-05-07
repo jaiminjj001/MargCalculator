@@ -62,24 +62,33 @@ public class EMITable extends Fragment {
     private double scale = Math.pow(10,2);
     private TableLayout tableLayout;
     private Button Share;
-    private PdfPTable table = new PdfPTable(5);
+    Double argAmount;
+    Double argTotalAmount;
+    Double argEMI;
+    Double argInterest;
+    Double argPeriod;
 
+    private PdfPTable table = new PdfPTable(5);
+    Font font = null;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View myView = inflater.inflate(R.layout.emi_details, container, false);
         try {
-            table.setWidths(new int[]{1,2,2,2,2});
+            table.setTotalWidth(460f);
+            table.setLockedWidth(true);
+            table.setWidths(new float[]{60f,100f,100f,100f,100f});
         } catch (DocumentException e) {
             e.printStackTrace();
         }
         Bundle args = getArguments();
-        Double argAmount = args.getDouble("Amount");
-        Double argTotalAmount = args.getDouble("TotalAmount");
-        Double temp = argTotalAmount;
-        Double argEMI = args.getDouble("EMI");
-        Double argInterest = args.getDouble("Interest");
-        Double argPeriod = args.getDouble("Period");
+        argAmount = args.getDouble("Amount");
+        argTotalAmount = args.getDouble("TotalAmount");
+        Double temp = argAmount;
+        argEMI = args.getDouble("EMI");
+        argInterest = args.getDouble("Interest");
+        argPeriod = args.getDouble("Period");
+        String EMIType= args.getString("EMI Type");
 
 
         TextView LoanAmountValue = myView.findViewById(R.id.loanAmountValue);
@@ -110,23 +119,22 @@ public class EMITable extends Fragment {
 
 
         for(int j =0;j<argPeriod;j++){
-            Double interest,principal,balance;
+            Double interest = 0.0,principal = 0.0,balance = 0.0;
             TableRow row = new TableRow(getContext());
             TableRow.LayoutParams layoutParams =new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT);
             layoutParams.setMargins(0,0,0,0);
             row.setLayoutParams(layoutParams);
+            row.setMinimumWidth(1100);
             row.setBackgroundColor(Color.WHITE);
             row.setPadding(2,0,2,2);
-
-            Font font = null;
             try {
-                font = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI,false),14,Font.NORMAL);
-                font.setColor(BaseColor.RED);
+                font = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 16, Font.NORMAL);
             } catch (DocumentException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+            font.setColor(BaseColor.BLACK);
             PdfPCell cell3;
             PdfPCell cell1;
             PdfPCell cell2;
@@ -160,31 +168,31 @@ public class EMITable extends Fragment {
                 Srno.setPadding(5,0,0,0);
                 Srno.setBackground(drawable);
 
-                Emi.setText("EMI");
+                Emi.setText("EMI\\mo");
                 Emi.setTextColor(Color.RED);
                 Emi.setTextSize(20);
-                Emi.setWidth(200);
+                Emi.setWidth(300);
                 Emi.setBackground(drawable);
                 Emi.setPadding(5,0,0,0);
 
                 Interest.setText("Interest");
                 Interest.setTextColor(Color.RED);
                 Interest.setTextSize(20);
-                Interest.setWidth(250);
+                Interest.setWidth(300);
                 Interest.setBackground(drawable);
                 Interest.setPadding(5,0,0,0);
 
                 Principal.setText("Principle");
                 Principal.setTextColor(Color.RED);
                 Principal.setTextSize(20);
-                Principal.setWidth(250);
+                Principal.setWidth(300);
                 Principal.setBackground(drawable);
                 Principal.setPadding(5,0,0,0);
 
                 Balance.setText("Balance");
                 Balance.setTextColor(Color.RED);
                 Balance.setTextSize(20);
-                Balance.setWidth(250);
+                Balance.setWidth(300);
                 Balance.setBackground(drawable);
                 Balance.setPadding(5,0,0,0);
 
@@ -195,17 +203,19 @@ public class EMITable extends Fragment {
                 row1.addView(Balance);
                 tableLayout.addView(row1,i);
 
+                font.setColor(BaseColor.RED);
                 cell1.addElement(new Phrase("Sr.NO",font));
                 cell2.addElement(new Phrase("EMI",font));
                 cell3.addElement(new Phrase("Interest",font));
                 cell4.addElement(new Phrase("Principle",font));
                 cell5.addElement(new Phrase("Balance",font));
+                font.setColor(BaseColor.BLACK);
 
-                cell1.setBackgroundColor(BaseColor.BLACK);
-                cell2.setBackgroundColor(BaseColor.BLACK);
-                cell3.setBackgroundColor(BaseColor.BLACK);
-                cell4.setBackgroundColor(BaseColor.BLACK);
-                cell5.setBackgroundColor(BaseColor.BLACK);
+                cell1.setBackgroundColor(BaseColor.WHITE);
+                cell2.setBackgroundColor(BaseColor.WHITE);
+                cell3.setBackgroundColor(BaseColor.WHITE);
+                cell4.setBackgroundColor(BaseColor.WHITE);
+                cell5.setBackgroundColor(BaseColor.WHITE);
 
                 cell1.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                 cell2.setHorizontalAlignment(PdfPCell.ALIGN_MIDDLE);
@@ -213,19 +223,11 @@ public class EMITable extends Fragment {
                 cell4.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
                 cell5.setHorizontalAlignment(PdfPCell.ALIGN_MIDDLE);
 
-
-                cell1.setColspan(0);
-                cell2.setColspan(1);
-                cell3.setColspan(1);
-                cell4.setColspan(1);
-                cell5.setColspan(1);
-
-                cell1.setBorderColor(BaseColor.WHITE);
-                cell2.setBorderColor(BaseColor.WHITE);
-                cell3.setBorderColor(BaseColor.WHITE);
-                cell4.setBorderColor(BaseColor.WHITE);
-                cell5.setBorderColor(BaseColor.WHITE);
-
+                cell1.setBorderColor(BaseColor.BLACK);
+                cell2.setBorderColor(BaseColor.BLACK);
+                cell3.setBorderColor(BaseColor.BLACK);
+                cell4.setBorderColor(BaseColor.BLACK);
+                cell5.setBorderColor(BaseColor.BLACK);
 
                 table.addCell(cell1);
                 table.addCell(cell2);
@@ -247,48 +249,59 @@ public class EMITable extends Fragment {
             cell5 = new PdfPCell();
 
             i++;
-            argEMI = Math.round(argEMI * scale) / scale;
-            interest = argInterest * temp;
-            interest = Math.round(interest * scale) / scale;
-            principal = argEMI - interest;
-            principal = Math.round(principal * scale) / scale;
-            balance = temp - argEMI;
-            balance = Math.round(balance * scale) / scale;
-            temp = balance;
-
+            if(EMIType.equals("Reducing")) {
+                argEMI = Math.round(argEMI * scale) / scale;
+                interest = argInterest * temp;
+                interest = Math.round(interest * scale) / scale;
+                principal = argEMI - interest;
+                principal = Math.round(principal * scale) / scale;
+                balance = temp - principal;
+                balance = Math.round(balance * scale) / scale;
+                temp = balance;
+            }
+            else if(EMIType.equals("Flat")){
+                argEMI = Math.round(argEMI * scale) / scale;
+                interest = argInterest * argAmount;
+                interest = Math.round(interest * scale) / scale;
+                principal = argEMI - interest;
+                principal = Math.round(principal * scale) / scale;
+                balance = temp - principal;
+                balance = Math.round(balance * scale) / scale;
+                temp = balance;
+            }
             Srno.setText(i.toString());
-            Srno.setTextColor(Color.RED);
+            Srno.setTextColor(Color.BLACK);
             Srno.setTextSize(20);
             Srno.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            Srno.setWidth(80);
+            Srno.setWidth(150);
             Srno.setBackground(drawable);
             Srno.setPadding(5,0,0,0);
 
             Emi.setText(argEMI.toString());
-            Emi.setTextColor(Color.RED);
+            Emi.setTextColor(Color.BLACK);
             Emi.setTextSize(20);
-            Emi.setWidth(150);
+            Emi.setWidth(300);
             Emi.setBackground(drawable);
             Emi.setPadding(5,0,0,0);
 
             Interest.setText(interest.toString());
-            Interest.setTextColor(Color.RED);
+            Interest.setTextColor(Color.BLACK);
             Interest.setTextSize(20);
-            Interest.setWidth(150);
+            Interest.setWidth(300);
             Interest.setBackground(drawable);
             Interest.setPadding(5,0,0,0);
 
             Principal.setText(principal.toString());
-            Principal.setTextColor(Color.RED);
+            Principal.setTextColor(Color.BLACK);
             Principal.setTextSize(20);
-            Principal.setWidth(150);
+            Principal.setWidth(300);
             Principal.setBackground(drawable);
             Principal.setPadding(5,0,0,0);
 
             Balance.setText(balance.toString());
-            Balance.setTextColor(Color.RED);
+            Balance.setTextColor(Color.BLACK);
             Balance.setTextSize(20);
-            Balance.setWidth(250);
+            Balance.setWidth(300);
             Balance.setBackground(drawable);
             Balance.setPadding(5,0,0,0);
 
@@ -305,11 +318,11 @@ public class EMITable extends Fragment {
             cell4.addElement(new Phrase(principal.toString(),font));
             cell5.addElement(new Phrase(balance.toString(),font));
 
-            cell1.setBackgroundColor(BaseColor.BLACK);
-            cell2.setBackgroundColor(BaseColor.BLACK);
-            cell3.setBackgroundColor(BaseColor.BLACK);
-            cell4.setBackgroundColor(BaseColor.BLACK);
-            cell5.setBackgroundColor(BaseColor.BLACK);
+            cell1.setBackgroundColor(BaseColor.WHITE);
+            cell2.setBackgroundColor(BaseColor.WHITE);
+            cell3.setBackgroundColor(BaseColor.WHITE);
+            cell4.setBackgroundColor(BaseColor.WHITE);
+            cell5.setBackgroundColor(BaseColor.WHITE);
 
             cell1.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cell2.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
@@ -317,17 +330,12 @@ public class EMITable extends Fragment {
             cell4.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
             cell5.setHorizontalAlignment(PdfPCell.ALIGN_CENTER);
 
-            cell1.setColspan(0);
-            cell2.setColspan(1);
-            cell3.setColspan(1);
-            cell4.setColspan(1);
-            cell5.setColspan(1);
 
-            cell1.setBorderColor(BaseColor.WHITE);
-            cell2.setBorderColor(BaseColor.WHITE);
-            cell3.setBorderColor(BaseColor.WHITE);
-            cell4.setBorderColor(BaseColor.WHITE);
-            cell5.setBorderColor(BaseColor.WHITE);
+            cell1.setBorderColor(BaseColor.BLACK);
+            cell2.setBorderColor(BaseColor.BLACK);
+            cell3.setBorderColor(BaseColor.BLACK);
+            cell4.setBorderColor(BaseColor.BLACK);
+            cell5.setBorderColor(BaseColor.BLACK);
 
             table.addCell(cell1);
             table.addCell(cell2);
@@ -393,13 +401,44 @@ public class EMITable extends Fragment {
                     e.printStackTrace();
                }*/
                //endregion
+                Font dfont = new Font();
+                try {
+                    dfont = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 16, Font.BOLD);
+                } catch (DocumentException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                dfont.setColor(BaseColor.RED);
+                PdfPTable pDTable = new PdfPTable(3);
+                pDTable.getDefaultCell().setBorder(0);
+                pDTable.addCell(new Phrase("Loan Amount",dfont));
+                pDTable.addCell(new Phrase(":",font));
+                pDTable.addCell(new Phrase(argAmount.toString(),dfont));
 
-                createAndDisplayPdf(table);
+                pDTable.addCell(new Phrase("Total Amount",dfont));
+                pDTable.addCell(new Phrase(":",font));
+                pDTable.addCell(new Phrase(argTotalAmount.toString(),dfont));
+
+                pDTable.addCell(new Phrase("EMI PerMonth",dfont));
+                pDTable.addCell(new Phrase(":",font));
+                pDTable.addCell(new Phrase(argEMI.toString(),dfont));
+
+                pDTable.addCell(new Phrase("No of Months",dfont));
+                pDTable.addCell(new Phrase(":",font));
+                pDTable.addCell(new Phrase(argPeriod.toString(),dfont));
+
+                pDTable.addCell(new Phrase("Interest %(PerYear)",dfont));
+                pDTable.addCell(new Phrase(":",font));
+                double t = argInterest*12*100;
+                pDTable.addCell(new Phrase(Double.toString(t),dfont));
+
+                createAndDisplayPdf(table,pDTable);
             }
         });
         return  myView;
     }
-    private void createAndDisplayPdf(PdfPTable pTable) {
+    private void createAndDisplayPdf(PdfPTable pTable,PdfPTable pDTable) {
 
         Document doc = new Document();
         try {
@@ -413,6 +452,8 @@ public class EMITable extends Fragment {
             FileOutputStream fOut = new FileOutputStream(file);
             PdfWriter.getInstance(doc, fOut);
             doc.open();
+            doc.add(pDTable);
+            doc.add(new Paragraph("\n"));
             doc.add(pTable);
 
         } catch (DocumentException de) {

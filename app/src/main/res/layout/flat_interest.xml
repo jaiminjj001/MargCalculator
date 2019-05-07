@@ -1,141 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Freducing_scroll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:backgroundTint="@color/colorAccent">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/Finput"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:background="@color/colorAccent"
-            android:gravity="start"
+            android:layout_height="wrap_content"
+            android:gravity="left"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/Input"
-            android:textSize="22sp"
+            android:text="@string/FInput"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:textSize="20sp"
             android:textStyle="normal|bold"
+            android:textColor="@color/introText"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <EditText
             android:id="@+id/Famount_input"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
+            android:hint="@string/loan_amount"
+            android:textColorHint="@color/hint"
+            android:background="@drawable/rounded_inputs"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
             android:inputType="number"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Finput" />
-
-        <TextView
-            android:id="@+id/Famount"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/amount"
-            android:textSize="20sp"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Finput" />
 
         <EditText
             android:id="@+id/Finterest_input"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toEndOf="@+id/interest"
-            android:layout_toRightOf="@+id/interest"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/interest"
+            android:textColorHint="@color/hint"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
             android:inputType="number"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Famount_input" />
 
-        <TextView
-            android:id="@+id/Finterest"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/FinterestLinearLayout"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/interest"
-            android:textSize="20sp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Famount" />
-
-        <EditText
-            android:id="@+id/Fperiod_input"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toEndOf="@+id/period"
-            android:layout_toRightOf="@+id/period"
-            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Finterest_input" />
+            app:layout_constraintTop_toBottomOf="@+id/Finterest_input">
+            <EditText
+                android:id="@+id/Fperiod_input"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/rounded_inputs"
+                android:hint="@string/period"
+                android:inputType="number"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/hint"/>
 
-        <TextView
-            android:id="@+id/Fperiod"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/period"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Finterest" />
+            <RadioGroup
+                android:id="@+id/FPeriodSelector"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/Fradio_month"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="@string/month" />
+
+                <RadioButton
+                    android:id="@+id/Fradio_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:text="@string/year" />
+
+            </RadioGroup>
+        </LinearLayout>
 
         <EditText
             android:id="@+id/Fprocessing_fees_input"
-            android:layout_width="180dp"
+            android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toEndOf="@+id/processing_fees"
-            android:layout_toRightOf="@+id/processing_fees"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/processing_fees"
+            android:textColorHint="@color/hint"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="20dp"
             android:inputType="number"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fperiod_input" />
-
-        <TextView
-            android:id="@+id/Fprocessing_fees"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="@string/processing_fees"
-            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fperiod" />
+            app:layout_constraintTop_toBottomOf="@+id/FinterestLinearLayout" />
 
         <LinearLayout
             android:id="@+id/FlinearLayout"
-            style="?attr/buttonBarStyle"
-            android:layout_width="403dp"
-            android:layout_height="72dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fprocessing_fees">
+            app:layout_constraintTop_toBottomOf="@+id/Fprocessing_fees_input">
 
             <Button
                 android:id="@+id/Fcalculate"
@@ -143,145 +148,190 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/calculate" />
+                android:layout_marginStart="5dp"
+                android:background="@color/buttons"
+                android:text="@string/calculate"
+                android:textColor="@color/inputs"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/Freset"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="@string/reset" />
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:background="@color/buttons"
+                android:text="@string/reset"
+                android:textColor="@color/inputs"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/Fcompare"
                 style="?attr/buttonBarButtonStyle"
                 android:layout_width="wrap_content"
-                android:layout_height="72dp"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="5dp"
                 android:layout_weight="1"
-                android:text="@string/compare" />
+                android:background="@color/buttons"
+                android:text="@string/compare"
+                android:textColor="@color/inputs"
+                android:textSize="18sp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/FResult"
+        <LinearLayout
+            android:id="@+id/FEMI_result_ll"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             android:layout_width="match_parent"
-            android:layout_height="32dp"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="20dp"
-            android:background="@color/colorAccent"
-            android:gravity="start"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/Result"
-            android:textSize="22sp"
-            android:textStyle="normal|bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FlinearLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/FlinearLayout">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_outputs"
+                android:gravity="start">
 
-        <TextView
-            android:id="@+id/FEMI_output"
-            android:layout_width="190dp"
-            android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/EMI_perMonth"
-            android:layout_toRightOf="@+id/EMI_perMonth"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FResult" />
+                <TextView
+                    android:id="@+id/FEMI_perMonth"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/emi_per_month"
+                    android:textColor="@color/inputs"
+                    android:textStyle="bold|italic"
+                    android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/FEMI_perMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="30dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/emi_per_month"
-            android:textSize="20sp"
+                <TextView
+                    android:id="@+id/FEMI_output"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textColor="@color/inputs"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/rounded_outputs"
+                android:layout_gravity="end"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/Ftotal_processing_fees"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/processing_fees_output"
+                    android:textColor="@color/inputs"
+                    android:textSize="22sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/Fprocessing_fees_output"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="20sp"
+                    android:textColor="@color/inputs"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/FTotal_result_ll"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FResult" />
+            app:layout_constraintTop_toBottomOf="@+id/FEMI_result_ll">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/rounded_outputs"
+                android:gravity="start">
 
-        <TextView
-            android:id="@+id/Fprocessing_fees_output"
-            android:layout_width="190dp"
-            android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_toEndOf="@+id/processing_fees"
-            android:layout_toRightOf="@+id/processing_fees"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FEMI_output"
-            android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/Ftotal_interest"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/total_interest"
+                    android:textColor="@color/inputs"
+                    android:textStyle="bold|italic"
+                    android:textSize="22sp" />
 
-        <TextView
-            android:id="@+id/Ftotal_processing_fees"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/processing_fees"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/FEMI_perMonth" />
+                <TextView
+                    android:id="@+id/Ftotal_interest_output"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/inputs"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="20sp"/>
 
-        <TextView
-            android:id="@+id/Ftotal_interest_output"
-            android:textSize="20sp"
-            android:layout_width="190dp"
-            android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toEndOf="@+id/total_interest"
-            android:layout_toRightOf="@+id/total_interest"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Fprocessing_fees_output" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/Ftotal_interest"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/total_interest"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ftotal_processing_fees" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+                android:background="@drawable/rounded_outputs"
+                android:layout_gravity="end"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Ftotal_amount_output"
-            android:layout_width="190dp"
-            android:layout_height="38dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toEndOf="@+id/total_interest"
-            android:layout_toRightOf="@+id/total_interest"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ftotal_interest_output" />
+                <TextView
+                    android:id="@+id/Ftotal_amount"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:text="@string/total_amount"
+                    android:textColor="@color/inputs"
+                    android:textSize="22sp"
+                    android:textStyle="bold|italic" />
 
-        <TextView
-            android:id="@+id/Ftotal_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/total_amount"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ftotal_interest" />
+                <TextView
+                    android:id="@+id/Ftotal_amount_output"
+                    android:layout_width="180dp"
+                    android:layout_height="38dp"
+                    android:gravity="center"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/inputs"/>
+
+            </LinearLayout>
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/FlinearLayout2"
@@ -289,31 +339,38 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
             android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Ftotal_amount">
+            app:layout_constraintTop_toBottomOf="@+id/FTotal_result_ll">
+
             <Button
                 android:id="@+id/Fshare"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_marginStart="10dp"
+                android:drawableRight="@drawable/download"
+                android:drawablePadding="0dp"
                 android:text="@string/share"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"/>
+                android:textColor="@color/buttons"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <Button
                 android:id="@+id/Femi_details"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
+                android:layout_width="180dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_gravity="right"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="5dp"
                 android:text="@string/emi_details"
-                android:layout_marginLeft="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp" />
+                android:textColor="@color/buttons"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

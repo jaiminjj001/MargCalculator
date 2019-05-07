@@ -1,14 +1,21 @@
 package com.example.margcalculator;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,17 +23,33 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class FlatInterest extends Fragment {
     View view;
     Button Calculate;
     Button Reset;
     Button Compare;
     Button EMIDetails;
+    Button Share;
     Double EMI=0.0;
     Double TotalAmount=0.0;
     Double TotalInterest=0.0;
     Double Processing_fee=0.0;
     Double Period = 0.0;
+    Double years;
     Double Interest = 0.0;
     Double Amount = 0.0;
     @Override
@@ -45,29 +68,42 @@ public class FlatInterest extends Fragment {
                 EditText interest = view.findViewById(R.id.Finterest_input);
                 EditText period = view.findViewById(R.id.Fperiod_input);
                 EditText processing_fee = view.findViewById(R.id.Fprocessing_fees_input);
+                RadioGroup radioGroup = view.findViewById(R.id.FPeriodSelector);
+                RadioButton selectedPeriod =view.findViewById(radioGroup.getCheckedRadioButtonId());
                 EditText emi;
 
                 if (!amount.getText().toString().isEmpty() && !interest.getText().toString().isEmpty()
-                        && !period.getText().toString().isEmpty() && !processing_fee.getText().toString().isEmpty()) {
+                        && !period.getText().toString().isEmpty() && !processing_fee.getText().toString().isEmpty()
+                        && !selectedPeriod.getText().toString().isEmpty()) {
                     Amount = Double.valueOf(amount.getText().toString());
                     Interest = Double.valueOf(interest.getText().toString());
                     Period= Double.valueOf(period.getText().toString());
                     Processing_fee = Double.valueOf(processing_fee.getText().toString());
 
+
+                    if( selectedPeriod.getText().equals("YR")){
+                        years = Period;
+                        Period*=12;
+                    }
+                    double scale = Math.pow(10,2);
                     Processing_fee = (Processing_fee * Amount) / 100;
+                    Processing_fee = Math.round(Processing_fee * scale) / scale;
                     TotalInterest = (Interest*Amount*(Period/12))/100;
+                    TotalInterest = Math.round(TotalInterest * scale) / scale;
                     EMI = ComputeEMI(Amount, TotalInterest, Period);
+                    EMI = Math.round(EMI * scale) / scale;
                     TotalAmount = TotalInterest + Amount;
+                    TotalAmount = Math.round(TotalAmount * scale) / scale;
 
                     TextView Total_Amount_output = view.findViewById(R.id.Ftotal_amount_output);
                     TextView Total_Interest_output = view.findViewById(R.id.Ftotal_interest_output);
                     TextView EMI_PerMonth = view.findViewById(R.id.FEMI_output);
                     TextView Processing_fees_output = view.findViewById(R.id.Fprocessing_fees_output);
 
-                    Total_Amount_output.setText(String.format("%f", TotalAmount));
-                    Total_Interest_output.setText(String.format("%f", TotalInterest));
-                    EMI_PerMonth.setText(String.format("%f", EMI));
-                    Processing_fees_output.setText(String.format("%f", Processing_fee));
+                    Total_Amount_output.setText(TotalAmount.toString());
+                    Total_Interest_output.setText(TotalInterest.toString());
+                    EMI_PerMonth.setText(EMI.toString());
+                    Processing_fees_output.setText(Processing_fee.toString());
                     hideKeyboardFrom(getContext(), view);
                 }
                 else{
@@ -88,6 +124,10 @@ public class FlatInterest extends Fragment {
                 TextView Ointerest = view.findViewById(R.id.Ftotal_interest_output);
                 TextView Oemi = view.findViewById(R.id.FEMI_output);
                 TextView Oprocessing_fee = view.findViewById(R.id.Fprocessing_fees_output);
+                RadioButton year = view.findViewById(R.id.Fradio_year);
+                RadioButton month = view.findViewById(R.id.Fradio_month);
+                year.setChecked(false);
+                month.setChecked(false);
                 Oamount.setText("");
                 Ointerest.setText("");
                 Oemi.setText("");
@@ -100,6 +140,8 @@ public class FlatInterest extends Fragment {
                 TotalAmount = 0.0;
                 TotalInterest = 0.0;
                 Processing_fee = 0.0;
+                Period = 0.0;
+                years = 0.0;
 
             }
         });
@@ -151,6 +193,14 @@ public class FlatInterest extends Fragment {
                 }
             }
         });
+
+        Share = view.findViewById(R.id.Fshare);
+        Share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createAndDisplayPdf();
+            }
+        });
         return view;
     }
     private void onFragmentResume() {
@@ -161,8 +211,14 @@ public class FlatInterest extends Fragment {
             EditText processing_fee = view.findViewById(R.id.Fprocessing_fees_input);
             amount.setText(Amount.toString());
             interest.setText(Interest.toString());
+            RadioGroup radioGroup = view.findViewById(R.id.FPeriodSelector);
+            RadioButton button = view.findViewById(radioGroup.getCheckedRadioButtonId());
+            if(button.getText().toString().equals("YR")){
+                Period = years;
+            }
             period.setText(Period.toString());
-            processing_fee.setText(Processing_fee.toString());
+            Double t = (Processing_fee*100)/Amount;
+            processing_fee.setText(t.toString());
         }
     }
     private static void hideKeyboardFrom(Context context, View view) {
@@ -173,5 +229,123 @@ public class FlatInterest extends Fragment {
     private Double ComputeEMI(Double amount, Double interest, Double period){
         Double EMI = (amount+interest)/period;
         return EMI;
+    }
+
+    private void createAndDisplayPdf() {
+        if(EMI==0.0 && TotalAmount == 0.0){
+            Toast.makeText(getContext(),"Please Calculate EMI first",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        Font font = null;
+        Font paraFont = null;
+        try {
+            font = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 18, Font.NORMAL);
+            paraFont = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 22, Font.UNDERLINE|Font.BOLD);
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        font.setColor(BaseColor.RED);
+        paraFont.setColor(BaseColor.BLACK);
+        PdfPTable ITable = new PdfPTable(3);
+        PdfPTable OTable = new PdfPTable(3);
+        ITable.getDefaultCell().setBorder(0);
+
+        ITable.addCell(new Phrase("Input",paraFont));
+        ITable.addCell(new Phrase("",paraFont));
+        ITable.addCell(new Phrase("",paraFont));
+
+        ITable.addCell(new Phrase("\n",paraFont));
+        ITable.addCell(new Phrase("\n",paraFont));
+        ITable.addCell(new Phrase("\n",paraFont));
+
+        ITable.addCell(new Phrase("Loan Amount",font));
+        ITable.addCell(new Phrase(":",font));
+        ITable.addCell(new Phrase(Amount.toString(),font));
+
+        ITable.addCell(new Phrase("Interest %(Per Year)",font));
+        ITable.addCell(new Phrase(":",font));
+        ITable.addCell(new Phrase(Interest.toString(),font));
+
+        ITable.addCell(new Phrase("No of Months",font));
+        ITable.addCell(new Phrase(":",font));
+        ITable.addCell(new Phrase(Period.toString(),font));
+
+        ITable.addCell(new Phrase("Processing Fees",font));
+        ITable.addCell(new Phrase(":",font));
+        double t = (Processing_fee*100)/Amount;
+        ITable.addCell(new Phrase(Double.toString(t),font));
+
+        OTable.getDefaultCell().setBorder(0);
+        OTable.addCell(new Phrase("Output\n",paraFont));
+        OTable.addCell(new Phrase("\n",paraFont));
+        OTable.addCell(new Phrase("\n",paraFont));
+
+        OTable.addCell(new Phrase("EMI PerMonth",font));
+        OTable.addCell(new Phrase(":",font));
+        OTable.addCell(new Phrase(EMI.toString(),font));
+
+        OTable.addCell(new Phrase("\n",paraFont));
+        OTable.addCell(new Phrase("\n",paraFont));
+        OTable.addCell(new Phrase("\n",paraFont));
+
+        OTable.addCell(new Phrase("Processing Fees",font));
+        OTable.addCell(new Phrase(":",font));
+        OTable.addCell(new Phrase(Processing_fee.toString(),font));
+
+        OTable.addCell(new Phrase("Total Interest",font));
+        OTable.addCell(new Phrase(":",font));
+        OTable.addCell(new Phrase(TotalInterest.toString(),font));
+
+        OTable.addCell(new Phrase("Total Amount",font));
+        OTable.addCell(new Phrase(":",font));
+        OTable.addCell(new Phrase(TotalAmount.toString(),font));
+
+        Document doc = new Document();
+        try {
+            String path = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+            File dir = new File(path);
+            if(!dir.exists())
+                dir.mkdirs();
+
+            File file = new File(dir, "FlatEMI_Output.pdf");
+            FileOutputStream fOut = new FileOutputStream(file);
+            PdfWriter.getInstance(doc, fOut);
+            doc.open();
+            doc.add(ITable);
+            doc.add(new Paragraph("\n\n\n"));
+            doc.add(OTable);
+
+        } catch (DocumentException de) {
+            Log.e("PDFCreator", "DocumentException:" + de);
+        } catch (IOException e) {
+            Log.e("PDFCreator", "ioException:" + e);
+        }
+        finally {
+            doc.close();
+        }
+        viewPdf("FlatEMI_Output.pdf");
+    }
+
+    // Method for opening a pdf file
+    private void viewPdf(String file) {
+
+        File pdfFile = new File(Environment.getExternalStorageDirectory() + "/" + file);
+        Uri path = Uri.fromFile(pdfFile);
+
+        // Setting the intent for pdf reader
+        Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
+        pdfIntent.setDataAndType(path, "application/pdf");
+        pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        pdfIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+        try {
+            startActivity(pdfIntent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getContext(), "Can't read pdf file", Toast.LENGTH_SHORT).show();
+        }
     }
 }

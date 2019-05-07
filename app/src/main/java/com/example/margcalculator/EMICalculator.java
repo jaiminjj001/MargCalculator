@@ -1,8 +1,12 @@
 package com.example.margcalculator;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.sax.Element;
+import android.text.Layout;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,8 @@ public class EMICalculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emicalculator);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("EMI CALCULATOR");
+        toolbar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
@@ -29,7 +35,7 @@ public class EMICalculator extends AppCompatActivity {
         EMIAdapter adapter = new EMIAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {

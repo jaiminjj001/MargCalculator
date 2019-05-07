@@ -1,7 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorPrimaryDark">#61A846</color>
     <color name="colorAccent">#BBB9BA</color>
-    <color name="cardview_dark_background" tools:ignore="PrivateResource">#FF424242</color>
+    <color name="EMIBackground">#F0F0F0</color>
+
+
+    <color name="inputs">#FFFFFF</color>
+    <color name="pager_gradient1">#D500F9</color>
+    <color name="pager_gradient2">#4A148C</color>
+    <color name="pager_gradient3">#904BE7</color>
+    <color name="main_gradient1">#FF1744</color>
+    <color name="main_gradient2">#B71C1C</color>
+    <color name="colorAmber_A400">#FFC400</color>
+    <color name="colorAmber_900">#FF6F00</color>
+
+    <color name="introText">#B9CF1414</color>
+    <color name="output_box">#8B3838</color>
+    <color name="hint">#D7686868</color>
+    <color name="background">#DBD9C5</color>
+    <color name="toolbar">#61A846</color>
+    <color name="buttons">#61A846</color>
+    <color name="textbox">#414AA5</color>
+    <color name="black">#000000</color>
+    <color name="LBlack">#312F2F</color>
 </resources>
