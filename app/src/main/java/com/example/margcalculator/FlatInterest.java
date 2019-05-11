@@ -74,7 +74,7 @@ public class FlatInterest extends Fragment {
 
                 if (!amount.getText().toString().isEmpty() && !interest.getText().toString().isEmpty()
                         && !period.getText().toString().isEmpty() && !processing_fee.getText().toString().isEmpty()
-                        && !selectedPeriod.getText().toString().isEmpty()) {
+                         && (radioGroup.getCheckedRadioButtonId() != -1)) {
                     Amount = Double.valueOf(amount.getText().toString());
                     Interest = Double.valueOf(interest.getText().toString());
                     Period= Double.valueOf(period.getText().toString());

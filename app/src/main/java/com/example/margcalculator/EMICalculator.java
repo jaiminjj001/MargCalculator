@@ -52,20 +52,20 @@ public class EMICalculator extends AppCompatActivity {
 
             }
         });
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
             fm.popBackStack();
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            toolbar.setTitle("EMI CALCULATOR");
 //            Intent myIntent = new Intent(getApplicationContext(), EMICalculator.class);
 //            startActivityForResult(myIntent, 0);
         }
         else {
             Intent myIntent = new Intent(getApplicationContext(), MainActivity.class);
             startActivityForResult(myIntent, 0);
-
         }
         return true;
     }

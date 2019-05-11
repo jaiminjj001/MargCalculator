@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import static java.lang.Math.pow;
@@ -37,6 +38,10 @@ public class ReducingCompare extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         final View myView = inflater.inflate(R.layout.reducing_compare, container, false);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("REDUCING INTEREST");
+
         compareCalculate = myView.findViewById(R.id.compare_calculate);
         compareCalculate.setOnClickListener(new View.OnClickListener() {
             @Override

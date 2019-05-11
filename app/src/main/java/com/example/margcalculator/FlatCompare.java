@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import static java.lang.Math.pow;
@@ -31,6 +32,10 @@ public class FlatCompare extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         final View myView = inflater.inflate(R.layout.flat_compare_emi, container, false);
+
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
+        toolbar.setTitle("FLAT INTEREST");
+
         compareCalculate = myView.findViewById(R.id.Fcompare_calculate);
         compareCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
