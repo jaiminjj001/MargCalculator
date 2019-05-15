@@ -66,7 +66,9 @@ public class EMITable extends Fragment {
     Double argTotalAmount;
     Double argEMI;
     Double argInterest;
-    Double argPeriod;
+    Integer argPeriod;
+    String EMIType;
+    Double argYears;
 
     private PdfPTable table = new PdfPTable(5);
     Font font = null;
@@ -81,14 +83,14 @@ public class EMITable extends Fragment {
         } catch (DocumentException e) {
             e.printStackTrace();
         }
-        Bundle args = getArguments();
+        final Bundle args = getArguments();
         argAmount = args.getDouble("Amount");
         argTotalAmount = args.getDouble("TotalAmount");
         Double temp = argAmount;
         argEMI = args.getDouble("EMI");
         argInterest = args.getDouble("Interest");
-        argPeriod = args.getDouble("Period");
-        String EMIType= args.getString("EMI Type");
+        argPeriod = args.getInt("Period");
+        EMIType = args.getString("EMI Type");
 
 
         TextView LoanAmountValue = myView.findViewById(R.id.loanAmountValue);
@@ -103,10 +105,15 @@ public class EMITable extends Fragment {
         EmiPerMonthValue.setText(argEMI.toString());
 
         TextView MonthsValue = myView.findViewById(R.id.MonthsValue);
-        MonthsValue.setText(argPeriod.toString());
+        if(args.containsKey("years")) {
+            argYears = args.getDouble("years");
+            MonthsValue.setText(argYears.toString()+" years");
+        }
+        else
+            MonthsValue.setText(argPeriod.toString() + " months");
 
         TextView InterestValue = myView.findViewById(R.id.InterestValue);
-        InterestValue.setText(argInterest.toString());
+        InterestValue.setText(argInterest.toString()+" %");
 
         Integer i=0;
         argInterest = argInterest/(12*100);
@@ -114,7 +121,7 @@ public class EMITable extends Fragment {
         tableLayout = myView.findViewById(R.id.displayEMITable);
         tableLayout.setDrawingCacheEnabled(true);
         Resources resources = getResources();
-        Drawable drawable = ResourcesCompat.getDrawable(resources,R.drawable.border,null);
+        Drawable drawable = ResourcesCompat.getDrawable(resources,R.drawable.table_border,null);
 
 
 
@@ -163,6 +170,7 @@ public class EMITable extends Fragment {
 
                 Srno.setText("Sr.No");
                 Srno.setTextColor(Color.RED);
+                Srno.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Srno.setTextSize(20);
                 Srno.setWidth(150);
                 Srno.setPadding(5,0,0,0);
@@ -172,6 +180,7 @@ public class EMITable extends Fragment {
                 Emi.setTextColor(Color.RED);
                 Emi.setTextSize(20);
                 Emi.setWidth(300);
+                Emi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Emi.setBackground(drawable);
                 Emi.setPadding(5,0,0,0);
 
@@ -179,6 +188,7 @@ public class EMITable extends Fragment {
                 Interest.setTextColor(Color.RED);
                 Interest.setTextSize(20);
                 Interest.setWidth(300);
+                Interest.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Interest.setBackground(drawable);
                 Interest.setPadding(5,0,0,0);
 
@@ -187,6 +197,7 @@ public class EMITable extends Fragment {
                 Principal.setTextSize(20);
                 Principal.setWidth(300);
                 Principal.setBackground(drawable);
+                Principal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Principal.setPadding(5,0,0,0);
 
                 Balance.setText("Balance");
@@ -194,6 +205,7 @@ public class EMITable extends Fragment {
                 Balance.setTextSize(20);
                 Balance.setWidth(300);
                 Balance.setBackground(drawable);
+                Balance.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Balance.setPadding(5,0,0,0);
 
                 row1.addView(Srno);
@@ -279,6 +291,7 @@ public class EMITable extends Fragment {
 
             Emi.setText(argEMI.toString());
             Emi.setTextColor(Color.BLACK);
+            Emi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Emi.setTextSize(20);
             Emi.setWidth(300);
             Emi.setBackground(drawable);
@@ -286,6 +299,7 @@ public class EMITable extends Fragment {
 
             Interest.setText(interest.toString());
             Interest.setTextColor(Color.BLACK);
+            Interest.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Interest.setTextSize(20);
             Interest.setWidth(300);
             Interest.setBackground(drawable);
@@ -295,12 +309,14 @@ public class EMITable extends Fragment {
             Principal.setTextColor(Color.BLACK);
             Principal.setTextSize(20);
             Principal.setWidth(300);
+            Principal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Principal.setBackground(drawable);
             Principal.setPadding(5,0,0,0);
 
             Balance.setText(balance.toString());
             Balance.setTextColor(Color.BLACK);
             Balance.setTextSize(20);
+            Balance.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Balance.setWidth(300);
             Balance.setBackground(drawable);
             Balance.setPadding(5,0,0,0);
@@ -414,19 +430,24 @@ public class EMITable extends Fragment {
                 pDTable.getDefaultCell().setBorder(0);
                 pDTable.addCell(new Phrase("Loan Amount",dfont));
                 pDTable.addCell(new Phrase(":",font));
-                pDTable.addCell(new Phrase(argAmount.toString(),dfont));
+                pDTable.addCell(new Phrase("Rs. "+argAmount.toString(),dfont));
 
                 pDTable.addCell(new Phrase("Total Amount",dfont));
                 pDTable.addCell(new Phrase(":",font));
-                pDTable.addCell(new Phrase(argTotalAmount.toString(),dfont));
+                pDTable.addCell(new Phrase("Rs. "+argTotalAmount.toString(),dfont));
 
                 pDTable.addCell(new Phrase("EMI PerMonth",dfont));
                 pDTable.addCell(new Phrase(":",font));
-                pDTable.addCell(new Phrase(argEMI.toString(),dfont));
+                pDTable.addCell(new Phrase("Rs. "+argEMI.toString(),dfont));
 
                 pDTable.addCell(new Phrase("No of Months",dfont));
                 pDTable.addCell(new Phrase(":",font));
-                pDTable.addCell(new Phrase(argPeriod.toString(),dfont));
+                if(args.containsKey("years")) {
+                    pDTable.addCell(new Phrase(argYears.toString()+" years",dfont));
+                }
+                else
+                    pDTable.addCell(new Phrase(argPeriod.toString()+" months",dfont));
+
 
                 pDTable.addCell(new Phrase("Interest %(PerYear)",dfont));
                 pDTable.addCell(new Phrase(":",font));
@@ -441,14 +462,20 @@ public class EMITable extends Fragment {
     private void createAndDisplayPdf(PdfPTable pTable,PdfPTable pDTable) {
 
         Document doc = new Document();
+        String name = null;
         try {
             String path = Environment.getExternalStorageDirectory().getAbsolutePath();
 
             File dir = new File(path);
             if(!dir.exists())
                 dir.mkdirs();
-
-            File file = new File(dir, "newFile.pdf");
+            if(EMIType.equals("Reducing")){
+                name = "ReducingEMI_Table.pdf";
+            }
+            else if (EMIType.equals("Flat")){
+                name = "FlatEMI_Table.pdf";
+            }
+            File file = new File(dir, name);
             FileOutputStream fOut = new FileOutputStream(file);
             PdfWriter.getInstance(doc, fOut);
             doc.open();
@@ -464,7 +491,7 @@ public class EMITable extends Fragment {
         finally {
             doc.close();
         }
-        viewPdf("newFile.pdf");
+        viewPdf(name);
     }
 
     // Method for opening a pdf file
@@ -478,6 +505,7 @@ public class EMITable extends Fragment {
         pdfIntent.setDataAndType(path, "application/pdf");
         pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        pdfIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
 
         try {
             startActivity(pdfIntent);

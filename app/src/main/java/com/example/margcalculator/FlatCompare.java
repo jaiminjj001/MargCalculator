@@ -9,17 +9,25 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import static java.lang.Math.pow;
 
 public class FlatCompare extends Fragment {
     Button compareCalculate;
     Button compareReset;
+    Double Amount;
+    Double Interest1;
+    Double Interest2;
+    Integer Period1;
+    Integer Period2;
     Double EMI1;
     Double EMI2;
     Double TotalAmount1;
@@ -28,13 +36,15 @@ public class FlatCompare extends Fragment {
     Double TotalInterest2;
     Double Processing_fees1;
     Double Processing_fees2;
+    Double years1=0.0;
+    Double years2=0.0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         final View myView = inflater.inflate(R.layout.flat_compare_emi, container, false);
 
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
-        toolbar.setTitle("FLAT INTEREST");
+        toolbar.setTitle("Flat Interest");
 
         compareCalculate = myView.findViewById(R.id.Fcompare_calculate);
         compareCalculate.setOnClickListener(new View.OnClickListener() {
@@ -47,56 +57,84 @@ public class FlatCompare extends Fragment {
                 EditText period2 = myView.findViewById(R.id.Fcompare_period_input2);
                 EditText processing_fees1 = myView.findViewById(R.id.Fcompare_processing_fees_input1);
                 EditText processing_fees2 = myView.findViewById(R.id.Fcompare_processing_fees_input2);
+                final RadioGroup radioGroup = myView.findViewById(R.id.FPeriodSelector);
+
                 if(!amount.getText().toString().isEmpty() && !interest1.getText().toString().isEmpty() && !interest2.getText().toString().isEmpty()
                         && !period1.getText().toString().isEmpty() && !period2.getText().toString().isEmpty()
-                        && !processing_fees1.getText().toString().isEmpty() && !processing_fees2.getText().toString().isEmpty())
-                {
-                    Double Amount = Double.valueOf(amount.getText().toString());
-                    Double Interest1 = Double.valueOf(interest1.getText().toString());
-                    Double Interest2 = Double.valueOf(interest2.getText().toString());
-                    Double Period1 = Double.valueOf(period1.getText().toString());
-                    Double Period2 = Double.valueOf(period2.getText().toString());
+                        && !processing_fees1.getText().toString().isEmpty() && !processing_fees2.getText().toString().isEmpty()
+                        && radioGroup.getCheckedRadioButtonId()!=-1) {
+                    RadioButton selectedPeriod = myView.findViewById(radioGroup.getCheckedRadioButtonId());
+                    Amount = Double.valueOf(amount.getText().toString());
+                    Interest1 = Double.valueOf(interest1.getText().toString());
+                    Interest2 = Double.valueOf(interest2.getText().toString());
+                    double temp1 = Double.valueOf(period1.getText().toString());
+                    double temp2 = Double.valueOf(period2.getText().toString());
+                    if (selectedPeriod.getText().equals("YR")) {
+                        temp1*=12;
+                        temp2*=12;
+                        Period1 = (int)temp1;
+                        Period2 = (int)temp2;
+                        years1 = Double.valueOf(Period1/12);
+                        years2 = Double.valueOf(Period2/12);
+                    }
+                    else{
+                        Period1 = (int)temp1;
+                        Period2 = (int)temp2;
+                    }
                     Processing_fees1 = Double.valueOf(processing_fees1.getText().toString());
                     Processing_fees2 = Double.valueOf(processing_fees2.getText().toString());
 
-                    Double scale = Math.pow(10,2);
-                    Processing_fees1 = (Processing_fees1 * Amount) / 100;
-                    Processing_fees2 = (Processing_fees2 * Amount) / 100;
-                    TotalInterest1 =(Interest1 * Amount * (Period1/12))/100;
-                    TotalInterest2 = (Interest2 * Amount * (Period2/12))/100;
-                    EMI1 = ComputeEMI(Amount,TotalInterest1,Period1);
-                    EMI2 = ComputeEMI(Amount,TotalInterest2,Period2);
-                    TotalAmount1 = EMI1 * Period1;
-                    TotalAmount2 = EMI2 * Period2;
+                    if (Period1 == 0 || Period2 == 0) {
+                        Toast.makeText(getContext(), "Period cannot be 0", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                    Processing_fees1 = Math.round(Processing_fees1 * scale) / scale;
-                    Processing_fees2 = Math.round(Processing_fees2 * scale) / scale;
-                    TotalInterest1 = Math.round(TotalInterest1 * scale) / scale;
-                    TotalInterest2 = Math.round(TotalInterest2 * scale) / scale;
-                    EMI1 = Math.round(EMI1 * scale) / scale;
-                    EMI2= Math.round(EMI2 * scale) / scale;
-                    TotalAmount1 = Math.round(TotalAmount1 * scale) / scale;
-                    TotalAmount2 = Math.round(TotalAmount2 * scale) / scale;
+                        Double scale = Math.pow(10, 2);
+                        Processing_fees1 = (Processing_fees1 * Amount) / 100;
+                        Processing_fees2 = (Processing_fees2 * Amount) / 100;
+                        TotalInterest1 = (Interest1 * Amount * (Period1 / 12)) / 100;
+                        TotalInterest2 = (Interest2 * Amount * (Period2 / 12)) / 100;
+                        EMI1 = ComputeEMI(Amount, TotalInterest1, Period1);
+                        EMI2 = ComputeEMI(Amount, TotalInterest2, Period2);
+                        TotalAmount1 = EMI1 * Period1;
+                        TotalAmount2 = EMI2 * Period2;
 
+                        Processing_fees1 = Math.round(Processing_fees1 * scale) / scale;
+                        Processing_fees2 = Math.round(Processing_fees2 * scale) / scale;
+                        TotalInterest1 = Math.round(TotalInterest1 * scale) / scale;
+                        TotalInterest2 = Math.round(TotalInterest2 * scale) / scale;
+                        EMI1 = Math.round(EMI1 * scale) / scale;
+                        EMI2 = Math.round(EMI2 * scale) / scale;
+                        TotalAmount1 = Math.round(TotalAmount1 * scale) / scale;
+                        TotalAmount2 = Math.round(TotalAmount2 * scale) / scale;
 
-                    TextView EMI_perMonth1 = myView.findViewById(R.id.Fcompare_EMI_output1);
-                    TextView EMI_perMonth2 = myView.findViewById(R.id.Fcompare_EMI_output2);
-                    TextView Processing_fees_output1 = myView.findViewById(R.id.Fcompare_processing_fees_output1);
-                    TextView Processing_fees_output2 = myView.findViewById(R.id.Fcompare_processing_fees_output2);
-                    TextView Total_interest_output1 = myView.findViewById(R.id.Fcompare_total_interest_output1);
-                    TextView Total_interest_output2 = myView.findViewById(R.id.Fcompare_total_interest_output2);
-                    TextView Total_amount_output1 = myView.findViewById(R.id.Fcompare_total_amount_output1);
-                    TextView Total_amount_output2 = myView.findViewById(R.id.Fcompare_total_amount_output2);
-
-                    EMI_perMonth1.setText(EMI1.toString());
-                    EMI_perMonth2.setText(EMI2.toString());
-                    Processing_fees_output1.setText(Processing_fees1.toString());
-                    Processing_fees_output2.setText(Processing_fees2.toString());
-                    Total_interest_output1.setText(TotalInterest1.toString());
-                    Total_interest_output2.setText(TotalInterest2.toString());
-                    Total_amount_output1.setText(TotalAmount1.toString());
-                    Total_amount_output2.setText(TotalAmount2.toString());
-                    hideKeyboardFrom(getContext(), myView);
+                        Bundle args = new Bundle();
+                        args.putDouble("loan_amount", Amount);
+                        args.putDouble("interest1", Interest1);
+                        args.putDouble("interest2", Interest2);
+                        args.putInt("period1", Period1);
+                        args.putInt("period2", Period2);
+                        args.putDouble("processing_fees1", Processing_fees1);
+                        args.putDouble("processing_fees2", Processing_fees2);
+                        args.putDouble("EMI1", EMI1);
+                        args.putDouble("EMI2", EMI2);
+                        args.putDouble("total_interest1", TotalInterest1);
+                        args.putDouble("total_interest2", TotalInterest2);
+                        args.putDouble("total_amount1", TotalAmount1);
+                        args.putDouble("total_amount2", TotalAmount2);
+                        args.putString("type", "Reducing");
+                        if (years1 != 0 && years2 != 0) {
+                            args.putDouble("years1", years1);
+                            args.putDouble("years2", years2);
+                        }
+                        EMICompareOutput emiCompareOutput = new EMICompareOutput();
+                        emiCompareOutput.setArguments(args);
+                        assert getFragmentManager() != null;
+                        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                        fragmentTransaction.replace(R.id.tab_viewer, emiCompareOutput);
+                        fragmentTransaction.addToBackStack(null);
+                        fragmentTransaction.commit();
+                        hideKeyboardFrom(getContext(), myView);
+                    }
                 }
                 else{
                     Toast.makeText(getContext(),"Please fill all the Details",Toast.LENGTH_SHORT).show();
@@ -115,16 +153,10 @@ public class FlatCompare extends Fragment {
                 EditText period2 = myView.findViewById(R.id.Fcompare_period_input2);
                 EditText processing_fees1 = myView.findViewById(R.id.Fcompare_processing_fees_input1);
                 EditText processing_fees2 = myView.findViewById(R.id.Fcompare_processing_fees_input2);
-
-                TextView EMI_perMonth1 = myView.findViewById(R.id.Fcompare_EMI_output1);
-                TextView EMI_perMonth2 = myView.findViewById(R.id.Fcompare_EMI_output2);
-                TextView Processing_fees_output1 = myView.findViewById(R.id.Fcompare_processing_fees_output1);
-                TextView Processing_fees_output2 = myView.findViewById(R.id.Fcompare_processing_fees_output2);
-                TextView Total_interest_output1 = myView.findViewById(R.id.Fcompare_total_interest_output1);
-                TextView Total_interest_output2 = myView.findViewById(R.id.Fcompare_total_interest_output2);
-                TextView Total_amount_output1 = myView.findViewById(R.id.Fcompare_total_amount_output1);
-                TextView Total_amount_output2 = myView.findViewById(R.id.Fcompare_total_amount_output2);
-
+                RadioButton year = myView.findViewById(R.id.Fradio_year);
+                RadioButton month = myView.findViewById(R.id.Fradio_month);
+                year.setChecked(true);
+                month.setChecked(false);
                 amount.setText("");
                 interest1.setText("");
                 interest2.setText("");
@@ -132,15 +164,6 @@ public class FlatCompare extends Fragment {
                 processing_fees2.setText("");
                 period1.setText("");
                 period2.setText("");
-
-                EMI_perMonth1.setText("");
-                EMI_perMonth2.setText("");
-                Processing_fees_output1.setText("");
-                Processing_fees_output2.setText("");
-                Total_interest_output1.setText("");
-                Total_interest_output2.setText("");
-                Total_amount_output1.setText("");
-                Total_amount_output2.setText("");
 
                 EMI1 = 0.0;
                 EMI2 = 0.0;
@@ -155,7 +178,7 @@ public class FlatCompare extends Fragment {
         });
         return myView;
     }
-    private Double ComputeEMI(Double amount, Double interest, Double period){
+    private Double ComputeEMI(Double amount, Double interest, Integer period){
         Double EMI = (amount + interest)/period;
         return EMI;
     }

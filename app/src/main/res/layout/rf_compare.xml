@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/inputs">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/RFcompare_ll"
+            android:id="@+id/RFdifference"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="10dp"
@@ -22,392 +22,311 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <TextView
-                android:id="@+id/RFreducingEMI"
+                android:id="@+id/reducing"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:text="@string/reducing"
                 android:textStyle="bold"
                 android:textColor="@color/colorAmber_900"
                 android:textSize="20sp"
-                android:gravity="center"
-                app:layout_constraintEnd_toStartOf="@+id/RFflatEMI"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="220dp"
-                tools:layout_editor_absoluteY="40dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textStyle="bold"
-                android:textColor="@color/buttons"
-                android:textSize="20sp"
-                android:gravity="center"
-                android:text="vs"/>
+                android:gravity="center"/>
 
             <TextView
-                android:id="@+id/RFflatEMI"
+                android:id="@+id/flat"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/flat"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/main_gradient2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textColor="@color/main_gradient2"/>
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/RFcompare_amount"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFdifference"
+            android:text="@string/amount"/>
         <EditText
             android:id="@+id/RFcompare_amount_input"
-            android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
-            android:textColorHint="@color/hint"
-            android:hint="@string/loan_amount"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:layout_marginTop="10dp"
-            android:inputType="number"
+            android:layout_height="40dp"
+            android:fontFamily="@font/roboto"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/loan_amount"
+            android:drawableRight="@drawable/rupee"
+            android:inputType="numberDecimal"
+            android:textSize="18sp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:textColorHint="@color/hint"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_ll"/>
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount"/>
 
+        <TextView
+            android:id="@+id/RFcompare_interest"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="@string/dInterest"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount_input"/>
+
+        <LinearLayout
+            android:id="@+id/RFinterestLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest">
         <EditText
             android:id="@+id/RFcompare_interest_input1"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="4dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
             android:background="@drawable/rounded_inputs"
-            android:hint="@string/interest"
-            android:inputType="number"
+            android:hint="@string/rate"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/percent"
+            android:textColorHint="@color/hint"
+            android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColor="@color/hint"
-            android:textColorHint="@color/hint"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount_input" />
+            />
 
         <EditText
             android:id="@+id/RFcompare_interest_input2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
+            android:hint="@string/rate"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/percent"
             android:textColorHint="@color/hint"
-            android:hint="@string/interest"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_amount_input" />
-
-        <EditText
-            android:id="@+id/RFcompare_period_input1"
-            android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
-            android:textColorHint="@color/hint"
-            android:hint="@string/cperiod"
-            android:layout_width="180dp"
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/RFcompare_period"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
             android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="@string/dPeriod"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest_input1" />
+            app:layout_constraintTop_toBottomOf="@+id/RFinterestLinear"/>
 
-        <EditText
-            android:id="@+id/RFcompare_period_input2"
-            android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
-            android:textColorHint="@color/hint"
-            android:hint="@string/cperiod"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:inputType="number"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+
+        <LinearLayout
+            android:id="@+id/RFperiodLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_interest_input2" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_period">
+            <EditText
+                android:id="@+id/RFcompare_period_input1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_gravity="start"
+                android:background="@drawable/rounded_inputs"
+                android:hint="@string/cperiod"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"
+                android:inputType="numberDecimal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/hint"/>
 
+            <RadioGroup
+                android:id="@+id/RFPeriodSelector"
+                android:checkedButton="@+id/RFradio_year"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/border"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/RFradio_month"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="2dp"
+                    android:gravity="center"
+                    android:background="@drawable/toogle_background"
+                    android:textColor="@color/black"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:button="@null"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/month" />
+
+                <RadioButton
+                    android:id="@+id/RFradio_year"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="2dp"
+                    android:textColor="@color/black"
+                    android:gravity="center"
+                    android:background="@drawable/toogle_background"
+                    android:button="@null"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/roboto"
+                    android:text="@string/year" />
+
+            </RadioGroup>
+
+            <EditText
+                android:id="@+id/RFcompare_period_input2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_inputs"
+                android:hint="@string/cperiod"
+                android:textSize="18sp"
+                android:fontFamily="@font/roboto"
+                android:inputType="numberDecimal"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="end"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:textColorHint="@color/hint"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/RFcompare_processing_fees"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="38dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:text="@string/processing_fees_output"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFperiodLinearLayout"/>
+
+        <LinearLayout
+            android:id="@+id/RFProcessingLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_processing_fees">
         <EditText
             android:id="@+id/RFcompare_processing_fees_input1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
             android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
+            android:hint="@string/fees"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/percent"
             android:textColorHint="@color/hint"
-            android:hint="@string/processing_fees_output"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_period_input1" />
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_processing_fees" />
 
         <EditText
             android:id="@+id/RFcompare_processing_fees_input2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
             android:background="@drawable/rounded_inputs"
-            android:textColor="@color/hint"
+            android:hint="@string/fees"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/percent"
             android:textColorHint="@color/hint"
-            android:hint="@string/processing_fees_output"
-            android:layout_width="180dp"
-            android:layout_height="38dp"
-            android:layout_marginTop="5dp"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_period_input2" />
-
+            app:layout_constraintTop_toBottomOf="@+id/RFcompare_processing_fees" />
+        </LinearLayout>
         <LinearLayout
             android:id="@+id/RFlinearLayout"
             style="?attr/buttonBarStyle"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_processing_fees_input1">
+            app:layout_constraintTop_toBottomOf="@+id/RFProcessingLinear">
 
             <Button
                 android:id="@+id/RFcompare_calculate"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:textAllCaps="false"
+                android:background="@drawable/calculate_ripple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/calculate"
-                android:textColor="@color/buttons"
+                android:textColor="@color/inputs"
                 android:textStyle="bold"
-                android:textSize="22sp"/>
+                android:textSize="18sp"/>
 
             <Button
                 android:id="@+id/RFcompare_reset"
                 style="?attr/buttonBarButtonStyle"
-                android:layout_width="wrap_content"
+                android:background="@drawable/reset_compare_ripple"
+                android:textAllCaps="false"
+                android:layout_width="150dp"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:textColor="@color/buttons"
+                android:textColor="@color/LBlack"
                 android:gravity="center"
-                android:textSize="22sp"
+                android:layout_gravity="center"
+                android:textSize="18sp"
                 android:textStyle="bold"
-                android:layout_marginStart="90dp"
                 android:text="@string/reset" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/RFcompare_EMI_result_ll"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_outputs"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center_horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFlinearLayout" >
-            <TextView
-                android:id="@+id/RFcompare_EMI_perMonth"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/emi_per_month"
-                android:textSize="20sp"
-                android:textColor="@color/inputs"
-                android:textStyle="bold"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/RFcompare_EMI_output1"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="|"
-                    android:gravity="center"
-                    android:textColor="@color/inputs"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-                <TextView
-                    android:id="@+id/RFcompare_EMI_output2"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/RFcompare_TotalInterest_result_ll"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_outputs"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_EMI_result_ll" >
-            <TextView
-                android:id="@+id/RFcompare_total_interest"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/total_interest"
-                android:textColor="@color/inputs"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/RFcompare_total_interest_output1"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textColor="@color/inputs"
-                    android:textSize="20sp"
-                    android:textStyle="normal|bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="|"
-                    android:textStyle="bold"
-                    android:textColor="@color/inputs"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/RFcompare_total_interest_output2"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/RFcompare_TotalAmount_result_ll"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_outputs"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_TotalInterest_result_ll" >
-            <TextView
-                android:id="@+id/RFcompare_total_amount"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/total_amount"
-                android:textColor="@color/inputs"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/RFcompare_total_amount_output1"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="|"
-                    android:textStyle="bold"
-                    android:textColor="@color/inputs"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/RFcompare_total_amount_output2"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/RFcompare_processing_fees_result_ll"
-            android:orientation="vertical"
-            android:background="@drawable/rounded_outputs"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center_horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/RFcompare_TotalAmount_result_ll" >
-            <TextView
-                android:id="@+id/RFcompare_processing_fees"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:text="@string/processing_fees_output"
-                android:textColor="@color/inputs"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <TextView
-                    android:id="@+id/RFcompare_processing_fees_output1"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textColor="@color/inputs"
-                    android:textSize="20sp"
-                    android:textStyle="normal|bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:text="|"
-                    android:textColor="@color/inputs"
-                    android:textStyle="bold"
-                    android:textSize="20sp"/>
-
-                <TextView
-                    android:id="@+id/RFcompare_processing_fees_output2"
-                    android:layout_width="180dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/inputs"
-                    android:textStyle="normal|bold"/>
-            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

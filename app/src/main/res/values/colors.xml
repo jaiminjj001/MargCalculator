@@ -16,12 +16,13 @@
     <color name="colorAmber_900">#FF6F00</color>
 
     <color name="introText">#B9CF1414</color>
-    <color name="output_box">#8B3838</color>
+    <color name="output_background">#EFEFEF</color>
     <color name="hint">#D7686868</color>
     <color name="background">#DBD9C5</color>
-    <color name="toolbar">#61A846</color>
-    <color name="buttons">#61A846</color>
+    <color name="toolbar">#56C81B</color>
+    <color name="toolbar1">#6656C81B</color>
+    <color name="buttons">#E4E4E4</color>
     <color name="textbox">#414AA5</color>
     <color name="black">#000000</color>
-    <color name="LBlack">#312F2F</color>
+    <color name="LBlack">#444444</color>
 </resources>

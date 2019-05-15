@@ -7,6 +7,10 @@ import android.sax.Element;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,11 +21,14 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 public class EMICalculator extends AppCompatActivity {
-
+    private static InterstitialAd mInterstitialAd;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emicalculator);
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-4198388995953911/8753495057");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("EMI CALCULATOR");
         toolbar.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -53,7 +60,9 @@ public class EMICalculator extends AppCompatActivity {
             }
         });
     }
-
+    public static InterstitialAd getAd(){
+        return mInterstitialAd;
+    }
     public boolean onOptionsItemSelected(MenuItem item){
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {

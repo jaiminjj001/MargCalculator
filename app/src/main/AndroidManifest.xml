@@ -21,5 +21,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".EMICalculator"/>
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-4198388995953911~2398672403"/>
     </application>
 </manifest>

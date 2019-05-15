@@ -5,79 +5,96 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
-    >
+    android:background="@color/inputs">
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background">
+        android:background="@color/inputs">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/DescLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <LinearLayout
+            android:id="@+id/loanAmountLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
         <TextView
             android:id="@+id/loanAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/amount"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/buttons"
+            android:textColor="@color/LBlack"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
             android:id="@+id/loanAmountValue"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:drawableStart="@drawable/rupee"
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/output_box"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/totalAmountLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/loanAmountLinear" >
         <TextView
             android:id="@+id/TotalAmount"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
-            android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingStart="10dp"
             android:text="@string/total_amount"
+            android:textColor="@color/LBlack"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/buttons"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loanAmount" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/TotalAmountValue"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:drawableStart="@drawable/rupee"
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/output_box"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/loanAmountValue" />
-
+            android:textColor="@color/black"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/EMILinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalAmountLinear">
         <TextView
             android:id="@+id/EmiPerMonth"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -86,28 +103,33 @@
             android:paddingRight="10dp"
             android:text="@string/emi_per_month"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/buttons"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TotalAmount" />
+            android:textColor="@color/LBlack"
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/EmiPerMonthValue"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
+            android:drawableStart="@drawable/rupee"
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/output_box"
+            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TotalAmountValue" />
-
+            app:layout_constraintTop_toBottomOf="@id/totalAmountLinear" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/PeriodLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/EMILinear">
         <TextView
             android:id="@+id/Months"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -115,14 +137,12 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/dPeriod"
+            android:textColor="@color/LBlack"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/buttons"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EmiPerMonth" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/MonthsValue"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
@@ -130,14 +150,21 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="20sp"
+            android:textColor="@color/black"
             android:textStyle="bold"
-            android:textColor="@color/output_box"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EmiPerMonthValue" />
+            app:layout_constraintTop_toBottomOf="@id/EMILinear" />
+        </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/InterestLinear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/PeriodLinear">
         <TextView
             android:id="@+id/InterestPerYear"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
@@ -145,26 +172,25 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:text="@string/dInterest"
+            android:textColor="@color/LBlack"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="@color/buttons"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/Months" />
+            android:textStyle="bold"/>
         <TextView
             android:id="@+id/InterestValue"
-            android:layout_width="190dp"
+            android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@color/output_box"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/MonthsValue" />
-
+            app:layout_constraintTop_toBottomOf="@id/PeriodLinear" />
+        </LinearLayout>
+    </LinearLayout>
         <TableLayout
             android:id="@+id/displayEMITable"
             android:layout_width="match_parent"
@@ -173,7 +199,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InterestPerYear">
+            app:layout_constraintTop_toBottomOf="@+id/DescLinear">
 
         </TableLayout>
 
@@ -183,14 +209,16 @@
             android:layout_marginStart="10dp"
             android:drawableRight="@drawable/download"
             android:drawablePadding="0dp"
-            android:textColor="@color/buttons"
+            android:textColor="@color/black"
+            android:background="@drawable/reset_compare_ripple"
+            android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="@string/share"
+            android:text="Download PDF"
             app:layout_constraintTop_toBottomOf="@id/displayEMITable"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
     </HorizontalScrollView>
