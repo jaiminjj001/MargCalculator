@@ -24,6 +24,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
@@ -78,6 +79,10 @@ public class FlatInterest extends Fragment {
                     public void onAdFailedToLoad(int errorCode) {
                         // Code to be executed when an ad request fails.
                         Toast.makeText(getContext(), errorCode +": Inventory in creation",Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onAdClosed(){
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
                     }
                 });
                 EditText amount = view.findViewById(R.id.Famount_input);

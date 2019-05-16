@@ -60,9 +60,11 @@ public class EMICalculator extends AppCompatActivity {
             }
         });
     }
+
     public static InterstitialAd getAd(){
         return mInterstitialAd;
     }
+
     public boolean onOptionsItemSelected(MenuItem item){
         FragmentManager fm = getSupportFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {

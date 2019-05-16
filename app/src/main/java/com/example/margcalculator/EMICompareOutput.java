@@ -42,9 +42,9 @@ public class EMICompareOutput extends Fragment {
         else if(args.getString("type").equals("RF")){
             toolbar.setTitle("Reducing - Flat Compare");
             TextView bank1 = myView.findViewById(R.id.bank1);
-            bank1.setText("Reducing");
+            bank1.setText("Reducing EMI");
             TextView bank2 = myView.findViewById(R.id.bank2);
-            bank2.setText("Flat");
+            bank2.setText("Flat EMI");
         }
 
         TextView LoanAmount = myView.findViewById(R.id.Cloan_amount_value);
