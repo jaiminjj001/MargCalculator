@@ -3,6 +3,7 @@ package com.example.margcalculator;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,10 @@ import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 
 import static java.lang.Math.pow;
 
@@ -43,14 +48,37 @@ public class ReducingCompare extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
         final View myView = inflater.inflate(R.layout.reducing_compare, container, false);
-
+        hideKeyboardFrom(getContext(), myView);
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Reducing Interest");
-
+        final InterstitialAd mInterstitialAd = EMICalculator.getAd();
         compareCalculate = myView.findViewById(R.id.compare_calculate);
         compareCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.count++;
+                if(MainActivity.count==MainActivity.MAX_REQ) {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        mInterstitialAd.show();
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdFailedToLoad(int errorCode) {
+                            // Code to be executed when an ad request fails.
+                            Toast.makeText(getContext(), errorCode + ": Inventory in creation", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onAdClosed() {
+                            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                            EMICalculator.setAd(mInterstitialAd);
+                        }
+                    });
+                    MainActivity.count=0;
+                }
                 EditText amount = myView.findViewById(R.id.compare_amount_input);
                 EditText interest1 = myView.findViewById(R.id.compare_interest_input1);
                 EditText interest2 = myView.findViewById(R.id.compare_interest_input2);
@@ -95,17 +123,27 @@ public class ReducingCompare extends Fragment {
                             Processing_fees1 = Math.round(Processing_fees1 * scale) / scale;
                             Processing_fees2 = (Processing_fees2 * Amount) / 100;
                             Processing_fees2 = Math.round(Processing_fees2 * scale) / scale;
-                            EMI1 = ComputeEMI(Amount, Interest1, Period1);
+                            if(Interest1==0){
+                                EMI1 = Amount/Period1;
+                                TotalInterest1 = 0.0;
+                            }else{
+                                EMI1 = ComputeEMI(Amount, Interest1, Period1);
+                                TotalInterest1 = (TotalAmount1 - Amount);
+                            }
+                            if(Interest2==0){
+                                EMI2 = Amount/Period2;
+                                TotalInterest2 = 0.0;
+                            }else{
+                                EMI2 = ComputeEMI(Amount, Interest2, Period2);
+                                TotalInterest2 = (TotalAmount2 - Amount);
+                            }
                             EMI1 = Math.round(EMI1 * scale) / scale;
-                            EMI2 = ComputeEMI(Amount, Interest2, Period2);
                             EMI2 = Math.round(EMI2 * scale) / scale;
                             TotalAmount1 = EMI1 * Period1;
                             TotalAmount1 = Math.round(TotalAmount1 * scale) / scale;
                             TotalAmount2 = EMI2 * Period2;
                             TotalAmount2 = Math.round(TotalAmount2 * scale) / scale;
-                            TotalInterest1 = (TotalAmount1 - Amount);
                             TotalInterest1 = Math.round(TotalInterest1 * scale) / scale;
-                            TotalInterest2 = (TotalAmount2 - Amount);
                             TotalInterest2 = Math.round(TotalInterest2 * scale) / scale;
 
                             Bundle args = new Bundle();

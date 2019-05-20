@@ -69,6 +69,7 @@ public class ReducingInterest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.reducing_interest, container, false);
+        hideKeyboardFrom(getContext(), view);
         EMI = 0.0;
         TotalAmount = 0.0;
         TotalInterest = 0.0;
@@ -78,24 +79,29 @@ public class ReducingInterest extends Fragment {
         Calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                } else {
-                    mInterstitialAd.show();
-                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                MainActivity.count++;
+                if(MainActivity.count==MainActivity.MAX_REQ) {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        mInterstitialAd.show();
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdFailedToLoad(int errorCode) {
+                            // Code to be executed when an ad request fails.
+                            Toast.makeText(getContext(), errorCode + ": Inventory in creation", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onAdClosed() {
+                            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                            EMICalculator.setAd(mInterstitialAd);
+                        }
+                    });
+                    MainActivity.count=0;
                 }
-                mInterstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {
-                        // Code to be executed when an ad request fails.
-                            Toast.makeText(getContext(), errorCode +": Inventory in creation",Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onAdClosed(){
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                        EMICalculator.setAd(mInterstitialAd);
-                    }
-                });
                 hideKeyboardFrom(getContext(), view);
                 EditText amount = view.findViewById(R.id.amount_input);
                 EditText interest = view.findViewById(R.id.interest_input);
@@ -129,11 +135,17 @@ public class ReducingInterest extends Fragment {
                         double scale = Math.pow(10, 2);
                         Processing_fee = (Processing_fee * Amount) / 100;
                         Processing_fee = Math.round(Processing_fee * scale) / scale;
-                        EMI = ComputeEMI(Amount, Interest, Period);
+                        if(Interest==0){
+                            EMI = Amount/Period;
+                            TotalInterest = 0.0;
+                        }else{
+                            EMI = ComputeEMI(Amount, Interest, Period);
+                            TotalInterest = (TotalAmount - Amount);
+                        }
                         EMI = Math.round(EMI * scale) / scale;
                         TotalAmount = EMI * Period;
                         TotalAmount = Math.round(TotalAmount * scale) / scale;
-                        TotalInterest = (TotalAmount - Amount);
+
                         TotalInterest = Math.round(TotalInterest * scale) / scale;
 
 

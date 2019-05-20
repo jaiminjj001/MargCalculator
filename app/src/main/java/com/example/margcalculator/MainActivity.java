@@ -1,8 +1,10 @@
 package com.example.margcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
 
 import android.Manifest;
 import android.content.Intent;
@@ -23,10 +25,13 @@ public class MainActivity extends AppCompatActivity {
     Button emiCalculator;
     Button interestReturnCalculator;
     private AdView mAdView;
+    public static int count = 0;
+    public static final int MAX_REQ = 5;
     final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -56,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         MobileAds.initialize(this, "ca-app-pub-4198388995953911~2398672403");
         mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
         mAdView.setAdListener(new AdListener() {
             @Override
@@ -86,6 +91,11 @@ public class MainActivity extends AppCompatActivity {
             // other 'case' lines to check for other
             // permissions this app might request.
         }
+    }
+
+    @Override
+    public void onBackPressed(){
+        finishAffinity();
     }
 
 

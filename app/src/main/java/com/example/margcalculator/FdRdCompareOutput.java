@@ -1,9 +1,12 @@
 package com.example.margcalculator;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -79,5 +82,9 @@ public class FdRdCompareOutput extends Fragment {
         interestEarned1.setText(InterestEarned1.toString());
         interestEarned2.setText(InterestEarned2.toString());
         return myView;
+    }
+    private static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

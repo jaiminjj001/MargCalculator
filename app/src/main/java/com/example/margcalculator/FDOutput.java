@@ -1,6 +1,8 @@
 package com.example.margcalculator;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Typeface;
@@ -11,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +50,7 @@ public class FDOutput extends Fragment {
                              Bundle savedInstanceState) {
 
         final View myView = inflater.inflate(R.layout.fd_output, container, false);
+        hideKeyboardFrom(getContext(), myView);
         final TextView amountField = myView.findViewById(R.id.Odeposit_amount);
         final TextView depositAmount = myView.findViewById(R.id.Odeposit_amount_value);
         final TextView interestRate  = myView.findViewById(R.id.Odeposit_interest_rate_value);
@@ -205,5 +209,9 @@ public class FDOutput extends Fragment {
         } catch (ActivityNotFoundException e) {
             Toast.makeText(getContext(), "Can't read pdf file", Toast.LENGTH_SHORT).show();
         }
+    }
+    private static void hideKeyboardFrom(Context context, View view) {
+        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 }

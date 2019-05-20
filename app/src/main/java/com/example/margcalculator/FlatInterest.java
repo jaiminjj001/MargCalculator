@@ -59,6 +59,7 @@ public class FlatInterest extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.flat_interest, container, false);
+        hideKeyboardFrom(getContext(), view);
         EMI = 0.0;
         TotalAmount = 0.0;
         TotalInterest = 0.0;
@@ -68,23 +69,28 @@ public class FlatInterest extends Fragment {
         Calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mInterstitialAd.isLoaded()) {
-                    mInterstitialAd.show();
-                } else {
-                    mInterstitialAd.show();
-                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                MainActivity.count++;
+                if(MainActivity.count==MainActivity.MAX_REQ) {
+                    if (mInterstitialAd.isLoaded()) {
+                        mInterstitialAd.show();
+                    } else {
+                        mInterstitialAd.show();
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
+                    mInterstitialAd.setAdListener(new AdListener() {
+                        @Override
+                        public void onAdFailedToLoad(int errorCode) {
+                            // Code to be executed when an ad request fails.
+                            Toast.makeText(getContext(), errorCode + ": Inventory in creation", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onAdClosed() {
+                            mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        }
+                    });
+                    MainActivity.count=0;
                 }
-                mInterstitialAd.setAdListener(new AdListener() {
-                    @Override
-                    public void onAdFailedToLoad(int errorCode) {
-                        // Code to be executed when an ad request fails.
-                        Toast.makeText(getContext(), errorCode +": Inventory in creation",Toast.LENGTH_SHORT).show();
-                    }
-                    @Override
-                    public void onAdClosed(){
-                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                    }
-                });
                 EditText amount = view.findViewById(R.id.Famount_input);
                 EditText interest = view.findViewById(R.id.Finterest_input);
                 EditText period = view.findViewById(R.id.Fperiod_input);

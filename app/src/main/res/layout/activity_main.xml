@@ -25,6 +25,7 @@
             android:id="@+id/header_icon"
             android:layout_width="95dp"
             android:layout_height="95dp"
+            android:layout_gravity="center"
             android:contentDescription="@string/header_desc"
             android:paddingTop="8dp"
             android:src="@drawable/one" />
@@ -34,20 +35,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="8dp"
+            android:gravity="center"
             android:text="@string/header_title"
+            android:textStyle="bold"
+            android:textColor="@color/toolbar"
             android:fontFamily="@font/roboto"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/header_description"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:text="@string/header_subtitle"
-            android:fontFamily="@font/roboto"
-            android:textSize="16sp"/>
-
+            android:textSize="22sp" />
     </LinearLayout>
 
     <LinearLayout

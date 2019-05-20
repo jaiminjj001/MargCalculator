@@ -1,5 +1,7 @@
 package com.example.margcalculator;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,7 +9,12 @@ import android.sax.Element;
 import android.text.Layout;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
@@ -22,6 +29,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class EMICalculator extends AppCompatActivity {
     private static InterstitialAd mInterstitialAd;
+    private AdView mAdView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +44,18 @@ public class EMICalculator extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        MobileAds.initialize(this, "ca-app-pub-4198388995953911~2398672403");
+        mAdView = findViewById(R.id.adView1);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                // Code to be executed when an ad request fails.
+                if(errorCode==3)
+                    Toast.makeText(getApplicationContext(), errorCode +": Inventory in creation",Toast.LENGTH_SHORT).show();
+            }
+        });
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPager viewPager = findViewById(R.id.view_pager);
         EMIAdapter adapter = new EMIAdapter(getSupportFragmentManager());
