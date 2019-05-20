@@ -1,7 +1,6 @@
 package com.example.margcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -21,7 +20,8 @@ import com.google.android.gms.ads.MobileAds;
 
 
 public class MainActivity extends AppCompatActivity {
-    Button button;
+    Button emiCalculator;
+    Button interestReturnCalculator;
     private AdView mAdView;
     final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
     @Override
@@ -29,13 +29,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE},MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.INTERNET,Manifest.permission.ACCESS_NETWORK_STATE},MY_PERMISSIONS_REQUEST_WRITE_STORAGE);
         }
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         setContentView(R.layout.activity_main);
-        button = (Button)findViewById(R.id.EMIButton);
-        button.setOnClickListener(new View.OnClickListener() {
+        emiCalculator = (Button)findViewById(R.id.EMIButton);
+        emiCalculator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent myIntent = new Intent(MainActivity.this,
@@ -43,6 +44,16 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(myIntent);
             }
         });
+        interestReturnCalculator = findViewById(R.id.ReturnInterest);
+        interestReturnCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(MainActivity.this,
+                        InterestReturnCalculator.class);
+                startActivity(myIntent);
+            }
+        });
+
         MobileAds.initialize(this, "ca-app-pub-4198388995953911~2398672403");
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();

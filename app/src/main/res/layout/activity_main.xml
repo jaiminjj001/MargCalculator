@@ -72,15 +72,34 @@
             android:textColor="@color/pager_gradient2"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
+        <Button
+            android:id="@+id/ReturnInterest"
+            android:layout_width="match_parent"
+            android:layout_height="116dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@color/blueeee"
+            android:gravity="center"
+            android:text="@string/return_interest_calculator"
+            android:fontFamily="@font/roboto"
+            android:drawableEnd="@drawable/calculate"
+            android:textAllCaps="false"
+            android:textColor="@color/colorAmber_900"
+            android:textSize="24sp"
+            android:textStyle="normal|bold" />
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
             android:id="@+id/adView"
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-4198388995953911/7492707675">
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111">
         </com.google.android.gms.ads.AdView>
     </LinearLayout>
 </LinearLayout>

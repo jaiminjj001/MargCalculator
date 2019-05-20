@@ -135,6 +135,7 @@ public class RFCompare extends Fragment {
                 else{
                     Toast.makeText(getContext(),"Please fill all the Details",Toast.LENGTH_SHORT).show();
                 }
+
                 compareReset = myView.findViewById(R.id.RFcompare_reset);
                 compareReset.setOnClickListener(new View.OnClickListener() {
                     @Override

@@ -34,4 +34,27 @@
     <string name="emi_per_month">EMI</string>
     <string name="total_interest">Total Interest</string>
     <string name="total_amount">Total Amount</string>
+
+
+    <string name="return_interest_calculator">Return/Interest Calculator</string>
+    <string name="deposit_amount">Deposit Amount</string>
+    <string name="deposit_amount_input">Enter Deposit Amount</string>
+    <string name="interest_frequency">Interest Frequency</string>
+    <string name="frequency_prompt">Choose Frequency</string>
+    <string-array name="interest_frequency_list">
+        <item>Monthly</item>
+        <item>Quarterly</item>
+        <item>Half-Yearly</item>
+        <item>Yearly</item>
+    </string-array>
+    <string name="tenure_inmonths">Tenure(in Months)</string>
+    <string name="tenure_input">Enter Tenure</string>
+    <string name="tenure">Tenure</string>
+    <string name="maturity_amount">Maturity Amount</string>
+    <string name="interest_earned">Interest Earned</string>
+    <string name="recurring_amount">Recurring Amount</string>
+    <string name="recurring_amount_input">Enter Recurring Amount</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="fd">Fixed Deposit</string>
+    <string name="rd">Recurring Deposit</string>
 </resources>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reducing_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Fdeposit_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:fontFamily="@font/roboto"
+            android:textStyle="bold"
+            android:text="@string/deposit_amount"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/Fdeposit_amount_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="18dp"
+            android:fontFamily="@font/roboto"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/deposit_amount_input"
+            android:drawableRight="@drawable/rupee"
+            android:inputType="numberDecimal"
+            android:textSize="18sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColorHint="@color/hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_amount" />
+
+        <TextView
+            android:id="@+id/Fdeposit_interest"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="@string/dInterest"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_amount_input"
+            android:fontFamily="@font/roboto"/>
+
+        <EditText
+            android:id="@+id/Fdeposit_interest_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/interest"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:drawableEnd="@drawable/percent"
+            android:textColorHint="@color/hint"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="numberDecimal"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_interest" />
+
+        <TextView
+            android:id="@+id/Fdeposit_interest_frequency"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="@string/interest_frequency"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_interest_input"
+            android:fontFamily="@font/roboto"/>
+
+        <Spinner
+            android:id="@+id/Fdeposit_interest_frequency_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="10dp"
+            android:prompt="@string/frequency_prompt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_interest_frequency"/>
+
+        <TextView
+            android:id="@+id/Fdeposit_period"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="@string/tenure_inmonths"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_interest_frequency_input"
+            android:fontFamily="@font/roboto"/>
+
+        <EditText
+            android:id="@+id/Fdeposit_period_input"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/rounded_inputs"
+            android:hint="@string/tenure_input"
+            android:fontFamily="@font/roboto"
+            android:textSize="18sp"
+            android:textColorHint="@color/hint"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:inputType="number"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_period" />
+
+        <Button
+            android:id="@+id/Fdeposit_calculate"
+            style="?attr/buttonBarButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/calculate_ripple"
+            android:fontFamily="@font/roboto"
+            android:text="@string/calculate"
+            android:textColor="@color/inputs"
+            android:textSize="18sp"
+            android:textAllCaps="false"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_period_input"/>
+        <LinearLayout
+            android:id="@+id/Fdeposit_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Fdeposit_calculate">
+
+
+            <Button
+                android:id="@+id/Fdeposit_reset"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/reset_compare_ripple"
+                android:text="@string/reset"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/LBlack"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/Fdeposit_compare"
+                style="?attr/buttonBarButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto"
+                android:background="@drawable/reset_compare_ripple"
+                android:layout_marginStart="10dp"
+                android:text="@string/compare"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="@color/LBlack"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

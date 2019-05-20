@@ -90,6 +90,11 @@ public class ReducingInterest extends Fragment {
                         // Code to be executed when an ad request fails.
                             Toast.makeText(getContext(), errorCode +": Inventory in creation",Toast.LENGTH_SHORT).show();
                     }
+                    @Override
+                    public void onAdClosed(){
+                        mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                        EMICalculator.setAd(mInterstitialAd);
+                    }
                 });
                 hideKeyboardFrom(getContext(), view);
                 EditText amount = view.findViewById(R.id.amount_input);
