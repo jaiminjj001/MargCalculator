@@ -36,7 +36,7 @@ public class InterestReturnCalculator extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        MobileAds.initialize(this, "ca-app-pub-4198388995953911~2398672403");
+        MobileAds.initialize(this, "ca-app-pub-6033789502768800~5575046806");//alita app id
         mAdView = findViewById(R.id.adView2);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);

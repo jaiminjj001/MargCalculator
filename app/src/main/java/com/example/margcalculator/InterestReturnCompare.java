@@ -47,7 +47,7 @@ public class InterestReturnCompare extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.interest_return_compare, container, false);
         hideKeyboardFrom(getContext(), view);
-        final InterstitialAd mInterstitialAd = EMICalculator.getAd();
+        final InterstitialAd mInterstitialAd = InterestReturnCalculator.getAd();
         Rargs = new Bundle();
         Rargs = getArguments();
         args = new Bundle();
@@ -93,7 +93,7 @@ public class InterestReturnCompare extends Fragment {
                         @Override
                         public void onAdClosed() {
                             mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                            EMICalculator.setAd(mInterstitialAd);
+                            InterestReturnCalculator.setAd(mInterstitialAd);
                         }
                     });
                     MainActivity.count=0;

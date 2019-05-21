@@ -87,6 +87,7 @@ public class FlatInterest extends Fragment {
                         @Override
                         public void onAdClosed() {
                             mInterstitialAd.loadAd(new AdRequest.Builder().build());
+                            EMICalculator.setAd(mInterstitialAd);
                         }
                     });
                     MainActivity.count=0;

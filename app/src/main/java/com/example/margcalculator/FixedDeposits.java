@@ -39,7 +39,7 @@ public class FixedDeposits extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fixed_deposits, container, false);
         hideKeyboardFrom(getContext(), view);
-        final InterstitialAd mInterstitialAd = EMICalculator.getAd();
+        final InterstitialAd mInterstitialAd = InterestReturnCalculator.getAd();
         interestFrequency = view.findViewById(R.id.Fdeposit_interest_frequency_input);
         final ArrayAdapter adapter = ArrayAdapter.createFromResource(getContext(),R.array.interest_frequency_list,R.layout.spinner_item);
         interestFrequency.setAdapter(adapter);
@@ -65,7 +65,7 @@ public class FixedDeposits extends Fragment {
                         @Override
                         public void onAdClosed() {
                             mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                            EMICalculator.setAd(mInterstitialAd);
+                            InterestReturnCalculator.setAd(mInterstitialAd);
                         }
                     });
                     MainActivity.count=0;

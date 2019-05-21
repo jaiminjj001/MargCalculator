@@ -44,7 +44,7 @@ public class FdRdCompare extends Fragment {
                              Bundle savedInstanceState) {
         final View myView = inflater.inflate(R.layout.fdrd_compare, container, false);
         hideKeyboardFrom(getContext(), myView);
-        final InterstitialAd mInterstitialAd = EMICalculator.getAd();
+        final InterstitialAd mInterstitialAd = InterestReturnCalculator.getAd();
         interestFrequency1 = myView.findViewById(R.id.fdrd_compare_interest_frequency_input1);
         interestFrequency2 = myView.findViewById(R.id.fdrd_compare_interest_frequency_input2);
         final ArrayAdapter adapter1 = ArrayAdapter.createFromResource(getContext(),R.array.interest_frequency_list,R.layout.spinner_item);
@@ -74,7 +74,7 @@ public class FdRdCompare extends Fragment {
                         @Override
                         public void onAdClosed() {
                             mInterstitialAd.loadAd(new AdRequest.Builder().build());
-                            EMICalculator.setAd(mInterstitialAd);
+                            InterestReturnCalculator.setAd(mInterstitialAd);
                         }
                     });
                     MainActivity.count=0;

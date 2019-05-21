@@ -28,7 +28,7 @@
             android:layout_gravity="center"
             android:contentDescription="@string/header_desc"
             android:paddingTop="8dp"
-            android:src="@drawable/one" />
+            android:src="@drawable/main_activity_icon" />
 
         <TextView
             android:id="@+id/header_title"
