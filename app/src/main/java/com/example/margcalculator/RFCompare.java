@@ -99,8 +99,8 @@ public class RFCompare extends Fragment {
                         temp2*=12;
                         Period1 = (int)temp1;
                         Period2 = (int)temp2;
-                        years1 = Double.valueOf(Period1/12);
-                        years2 = Double.valueOf(Period2/12);
+                        years1 = (double) (Period1 / 12);
+                        years2 = (double) (Period2 / 12);
                     }
                     else{
                         Period1 = (int)temp1;
@@ -119,20 +119,19 @@ public class RFCompare extends Fragment {
                         Processing_fees1 = Math.round(Processing_fees1 * scale) / scale;
                         if(Interest1==0){
                             EMI1 = Amount/Period1;
-                            TotalInterest1 = 0.0;
                         }
                         else {
                             EMI1 = ComputeREMI(Amount, Interest1, Period1);
-                            TotalInterest1 = (TotalAmount1 - Amount);
                         }
-                        EMI1 = Math.round(EMI1 * scale) / scale;
                         TotalAmount1 = EMI1 * Period1;
+                        TotalInterest1 = (TotalAmount1 - Amount);
+                        EMI1 = Math.round(EMI1 * scale) / scale;
                         TotalAmount1 = Math.round(TotalAmount1 * scale) / scale;
                         TotalInterest1 = Math.round(TotalInterest1 * scale) / scale;
 
-                        Processing_fees2 = (Processing_fees2 * Amount) / 100;
+                        Processing_fees2 = (Processing_fees2 * Amount) / 100.0;
                         Processing_fees2 = Math.round(Processing_fees2 * scale) / scale;
-                        TotalInterest2 = (Interest2 * Amount * (Period2 / 12)) / 100;
+                        TotalInterest2 = (Interest2 * Amount * (Period2 / 12.00)) / 100.0;
                         TotalInterest2 = Math.round(TotalInterest2 * scale) / scale;
                         EMI2 = ComputeFEMI(Amount, TotalInterest2, Period2);
                         EMI2 = Math.round(EMI2 * scale) / scale;

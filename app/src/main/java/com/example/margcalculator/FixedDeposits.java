@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.ads.AdListener;
@@ -27,11 +28,11 @@ public class FixedDeposits extends Fragment {
     private Button calculate;
     private Button reset;
     private Button compare;
-    private Double DepositAmount;
-    private Double InterestRate;
-    private Integer InterestFrequency;
-    private Integer Tenure;
-    private Double MaturityAmount;
+    private Double DepositAmount=0.0;
+    private Double InterestRate=0.0;
+    private Integer InterestFrequency=0;
+    private Integer Tenure=0;
+    private Double MaturityAmount=0.0;
     private  Bundle args = new Bundle();
     private double scale = Math.pow(10,2);
     @Override
@@ -47,6 +48,7 @@ public class FixedDeposits extends Fragment {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                hideKeyboardFrom(getContext(), view);
                 MainActivity.count++;
                 if(MainActivity.count==MainActivity.MAX_REQ) {
                     if (mInterstitialAd.isLoaded()) {
@@ -156,7 +158,26 @@ public class FixedDeposits extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                FragmentManager manager = getFragmentManager();
+                if(manager!=null){
+                    onFragmentResume();
+                }
+            }
+        });
         return view;
+    }
+    private void onFragmentResume() {
+        EditText depositAmount = view.findViewById(R.id.Fdeposit_amount_input);
+        EditText interestRate = view.findViewById(R.id.Fdeposit_interest_input);
+        EditText tenure = view.findViewById(R.id.Fdeposit_period_input);
+        if(DepositAmount!=0 && InterestRate!=0.0 && Tenure!=0) {
+            depositAmount.setText(DepositAmount.toString());
+            interestRate.setText(InterestRate.toString());
+            tenure.setText(Tenure.toString());
+        }
     }
     private static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);

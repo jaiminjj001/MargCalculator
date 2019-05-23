@@ -63,7 +63,7 @@
             android:fontFamily="@font/roboto"
             android:drawableEnd="@drawable/calculate"
             android:textAllCaps="false"
-            android:textColor="@color/pager_gradient2"
+            android:textColor="@color/inputs"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
         <Button
@@ -74,13 +74,13 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
-            android:background="@color/blueeee"
+            android:background="@drawable/calculate_ripple"
             android:gravity="center"
             android:text="@string/return_interest_calculator"
             android:fontFamily="@font/roboto"
             android:drawableEnd="@drawable/calculate"
             android:textAllCaps="false"
-            android:textColor="@color/colorAmber_900"
+            android:textColor="@color/inputs"
             android:textSize="24sp"
             android:textStyle="normal|bold" />
         <com.google.android.gms.ads.AdView

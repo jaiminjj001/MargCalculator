@@ -35,18 +35,18 @@ import java.io.IOException;
 
 public class FlatEMIOutput extends Fragment {
     private View view;
-    private Double loanAmount;
-    private Double interestRate;
-    private Integer period;
-    private Double processingFees;
-    private Double EMI;
-    private Double totalInterest;
-    private Double totalAmount;
-    private Double processingRate;
+    private Double loanAmount=0.0;
+    private Double interestRate=0.0;
+    private Integer period=0;
+    private Double processingFees=0.0;
+    private Double EMI=0.0;
+    private Double totalInterest=0.0;
+    private Double totalAmount=0.0;
+    private Double processingRate=0.0;
     private Button Share;
     private Button EMIDetails;
     private String periodType;
-    private Double years;
+    private Double years=0.0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -112,7 +112,7 @@ public class FlatEMIOutput extends Fragment {
                     args.putInt("Period",period);
                     args.putDouble("Amount",loanAmount);
                     args.putString("EMI Type","Flat");
-                    if(years!=0) {
+                    if(years!=0.0) {
                         args.putDouble("years", years);
                     }
                     emiTable.setArguments(args);
@@ -139,8 +139,6 @@ public class FlatEMIOutput extends Fragment {
         Font font = null;
         Font paraFont = null;
         try {
-            AssetManager am = getContext().getApplicationContext().getAssets();
-            Typeface custom_font = Typeface.createFromAsset(am,"Roboto-Regular.ttf");
             font = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 18, Font.NORMAL);
             paraFont = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 22, Font.UNDERLINE|Font.BOLD);
         } catch (DocumentException e) {
@@ -154,7 +152,7 @@ public class FlatEMIOutput extends Fragment {
         PdfPTable OTable = new PdfPTable(3);
         ITable.getDefaultCell().setBorder(0);
 
-        ITable.addCell(new Phrase("Input",paraFont));
+        ITable.addCell(new Phrase("Loan Details",paraFont));
         ITable.addCell(new Phrase("",paraFont));
         ITable.addCell(new Phrase("",paraFont));
 
@@ -179,7 +177,7 @@ public class FlatEMIOutput extends Fragment {
         ITable.addCell(new Phrase(processingRate.toString()+" %",font));
 
         OTable.getDefaultCell().setBorder(0);
-        OTable.addCell(new Phrase("Output\n",paraFont));
+        OTable.addCell(new Phrase("Repayment Calculation\n",paraFont));
         OTable.addCell(new Phrase("\n",paraFont));
         OTable.addCell(new Phrase("\n",paraFont));
 

@@ -110,7 +110,7 @@ public class FlatInterest extends Fragment {
                     if (selectedPeriod.getText().equals("YR")) {
                         temp*=12;
                         Period = (int)temp;
-                        years = Double.valueOf(Period)/12;
+                        years = Double.valueOf(Period)/12.0;
                     }
                     else{
                         years=0.0;
@@ -124,17 +124,17 @@ public class FlatInterest extends Fragment {
                     else {
 
                         double scale = Math.pow(10, 2);
-                        Processing_fee = (Processing_fee * Amount) / 100;
+                        Processing_fee = (Processing_fee * Amount) / 100.0;
                         Processing_fee = Math.round(Processing_fee * scale) / scale;
-                        TotalInterest = (Interest * Amount * (Period / 12)) / 100;
-                        TotalInterest = Math.round(TotalInterest * scale) / scale;
+                        TotalInterest = (Interest * Amount * (Period / 12.0)) / 100.0;
                         EMI = ComputeEMI(Amount, TotalInterest, Period);
-                        EMI = Math.round(EMI * scale) / scale;
                         TotalAmount = TotalInterest + Amount;
+                        EMI = Math.round(EMI * scale) / scale;
+                        TotalInterest = Math.round(TotalInterest * scale) / scale;
                         TotalAmount = Math.round(TotalAmount * scale) / scale;
 
                         Bundle args = new Bundle();
-                        FlatEMIOutput reducingEMIOutput = new FlatEMIOutput();
+                        FlatEMIOutput flatEMIOutput = new FlatEMIOutput();
                         args.putDouble("loan_amount", Amount);
                         args.putDouble("interest_rate", Interest);
                         args.putInt("period", Period);
@@ -144,10 +144,10 @@ public class FlatInterest extends Fragment {
                         args.putDouble("total_amount", TotalAmount);
                         if (years != 0)
                             args.putDouble("years", years);
-                        reducingEMIOutput.setArguments(args);
+                        flatEMIOutput.setArguments(args);
                         assert getFragmentManager() != null;
                         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                        fragmentTransaction.replace(R.id.tab_viewer, reducingEMIOutput);
+                        fragmentTransaction.replace(R.id.tab_viewer, flatEMIOutput);
                         fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                         hideKeyboardFrom(getContext(), view);

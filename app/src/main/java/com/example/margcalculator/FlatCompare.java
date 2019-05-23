@@ -26,23 +26,23 @@ import com.google.android.gms.ads.InterstitialAd;
 import static java.lang.Math.pow;
 
 public class FlatCompare extends Fragment {
-    Button compareCalculate;
-    Button compareReset;
-    Double Amount;
-    Double Interest1;
-    Double Interest2;
-    Integer Period1;
-    Integer Period2;
-    Double EMI1;
-    Double EMI2;
-    Double TotalAmount1;
-    Double TotalAmount2;
-    Double TotalInterest1;
-    Double TotalInterest2;
-    Double Processing_fees1;
-    Double Processing_fees2;
-    Double years1=0.0;
-    Double years2=0.0;
+    private Button compareCalculate;
+    private Button compareReset;
+    private Double Amount;
+    private Double Interest1;
+    private Double Interest2;
+    private Integer Period1;
+    private Integer Period2;
+    private Double EMI1;
+    private Double EMI2;
+    private Double TotalAmount1;
+    private Double TotalAmount2;
+    private Double TotalInterest1;
+    private Double TotalInterest2;
+    private Double Processing_fees1;
+    private Double Processing_fees2;
+    private Double years1=0.0;
+    private Double years2=0.0;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
@@ -102,8 +102,8 @@ public class FlatCompare extends Fragment {
                         temp2*=12;
                         Period1 = (int)temp1;
                         Period2 = (int)temp2;
-                        years1 = Double.valueOf(Period1/12);
-                        years2 = Double.valueOf(Period2/12);
+                        years1 = (double) (Period1 / 12);
+                        years2 = (double) (Period2 / 12);
                     }
                     else{
                         Period1 = (int)temp1;
@@ -117,10 +117,10 @@ public class FlatCompare extends Fragment {
                     } else {
 
                         Double scale = Math.pow(10, 2);
-                        Processing_fees1 = (Processing_fees1 * Amount) / 100;
-                        Processing_fees2 = (Processing_fees2 * Amount) / 100;
-                        TotalInterest1 = (Interest1 * Amount * (Period1 / 12)) / 100;
-                        TotalInterest2 = (Interest2 * Amount * (Period2 / 12)) / 100;
+                        Processing_fees1 = (Processing_fees1 * Amount) / 100.0;
+                        Processing_fees2 = (Processing_fees2 * Amount) / 100.0;
+                        TotalInterest1 = (Interest1 * Amount * (Period1 / 12.00)) / 100.0;
+                        TotalInterest2 = (Interest2 * Amount * (Period2 / 12.00)) / 100.0;
                         EMI1 = ComputeEMI(Amount, TotalInterest1, Period1);
                         EMI2 = ComputeEMI(Amount, TotalInterest2, Period2);
                         TotalAmount1 = EMI1 * Period1;

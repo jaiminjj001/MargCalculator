@@ -15,6 +15,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.ads.AdListener;
@@ -49,6 +50,7 @@ public class RecurringDeposits extends Fragment {
             @Override
             public void onClick(View v) {
                 MainActivity.count++;
+                hideKeyboardFrom(getContext(), view);
                 if(MainActivity.count==MainActivity.MAX_REQ) {
                     if (mInterstitialAd.isLoaded()) {
                         mInterstitialAd.show();
@@ -157,8 +159,29 @@ public class RecurringDeposits extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+        getFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
+            @Override
+            public void onBackStackChanged() {
+                FragmentManager manager = getFragmentManager();
+                if(manager!=null){
+                    onFragmentResume();
+                }
+            }
+        });
         return view;
     }
+
+    private void onFragmentResume() {
+        EditText depositAmount = view.findViewById(R.id.Rdeposit_amount_input);
+        EditText interestRate = view.findViewById(R.id.Rdeposit_interest_input);
+        EditText tenure = view.findViewById(R.id.Rdeposit_period_input);
+        if(RecurringAmount!=0.0 && InterestRate!=0.0 && Tenure!=0) {
+            depositAmount.setText(RecurringAmount.toString());
+            interestRate.setText(InterestRate.toString());
+            tenure.setText(Tenure.toString());
+        }
+    }
+
     private static void hideKeyboardFrom(Context context, View view) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);

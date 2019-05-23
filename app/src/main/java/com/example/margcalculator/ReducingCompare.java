@@ -125,23 +125,24 @@ public class ReducingCompare extends Fragment {
                             Processing_fees2 = Math.round(Processing_fees2 * scale) / scale;
                             if(Interest1==0){
                                 EMI1 = Amount/Period1;
-                                TotalInterest1 = 0.0;
                             }else{
                                 EMI1 = ComputeEMI(Amount, Interest1, Period1);
-                                TotalInterest1 = (TotalAmount1 - Amount);
                             }
                             if(Interest2==0){
                                 EMI2 = Amount/Period2;
-                                TotalInterest2 = 0.0;
                             }else{
                                 EMI2 = ComputeEMI(Amount, Interest2, Period2);
-                                TotalInterest2 = (TotalAmount2 - Amount);
+
                             }
+
+                            TotalAmount1 = EMI1 * Period1;
+                            TotalAmount2 = EMI2 * Period2;
+                            TotalInterest1 = (TotalAmount1 - Amount);
+                            TotalInterest2 = (TotalAmount2 - Amount);
+
                             EMI1 = Math.round(EMI1 * scale) / scale;
                             EMI2 = Math.round(EMI2 * scale) / scale;
-                            TotalAmount1 = EMI1 * Period1;
                             TotalAmount1 = Math.round(TotalAmount1 * scale) / scale;
-                            TotalAmount2 = EMI2 * Period2;
                             TotalAmount2 = Math.round(TotalAmount2 * scale) / scale;
                             TotalInterest1 = Math.round(TotalInterest1 * scale) / scale;
                             TotalInterest2 = Math.round(TotalInterest2 * scale) / scale;

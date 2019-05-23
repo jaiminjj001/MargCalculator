@@ -109,13 +109,12 @@
                         android:drawableStart="@drawable/rupee"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
                         android:fontFamily="@font/roboto"
-                        android:layout_marginTop="10dp"
                         android:layout_weight="1"
+                        android:layout_marginStart="10dp"
                         android:gravity="start"
                         android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textStyle="bold"  />
                 </LinearLayout>
 
             </LinearLayout>

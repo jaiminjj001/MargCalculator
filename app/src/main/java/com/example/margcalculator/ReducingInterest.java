@@ -137,15 +137,13 @@ public class ReducingInterest extends Fragment {
                         Processing_fee = Math.round(Processing_fee * scale) / scale;
                         if(Interest==0){
                             EMI = Amount/Period;
-                            TotalInterest = 0.0;
                         }else{
                             EMI = ComputeEMI(Amount, Interest, Period);
-                            TotalInterest = (TotalAmount - Amount);
                         }
-                        EMI = Math.round(EMI * scale) / scale;
                         TotalAmount = EMI * Period;
+                        TotalInterest = (TotalAmount - Amount);
+                        EMI = Math.round(EMI * scale) / scale;
                         TotalAmount = Math.round(TotalAmount * scale) / scale;
-
                         TotalInterest = Math.round(TotalInterest * scale) / scale;
 
 

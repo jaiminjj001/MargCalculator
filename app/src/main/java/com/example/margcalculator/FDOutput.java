@@ -80,7 +80,7 @@ public class FDOutput extends Fragment {
         }
         double scale = Math.pow(10,2);
         InterestEarned = Math.round(InterestEarned*scale)/scale;
-        interestRate.setText(InterestRate.toString());
+        interestRate.setText(InterestRate.toString()+" %");
         interestFreq.setText(InterestFrequency);
         tenure.setText(Tenure.toString());
         maturityAmount.setText(MaturityAmount.toString());
@@ -114,7 +114,7 @@ public class FDOutput extends Fragment {
         PdfPTable OTable = new PdfPTable(3);
         ITable.getDefaultCell().setBorder(0);
 
-        ITable.addCell(new Phrase("Input",paraFont));
+        ITable.addCell(new Phrase("Investment",paraFont));
         ITable.addCell(new Phrase("",paraFont));
         ITable.addCell(new Phrase("",paraFont));
 
@@ -145,7 +145,7 @@ public class FDOutput extends Fragment {
         ITable.addCell(new Phrase(Tenure.toString(),font));
 
         OTable.getDefaultCell().setBorder(0);
-        OTable.addCell(new Phrase("Output\n",paraFont));
+        OTable.addCell(new Phrase("Maturity\n",paraFont));
         OTable.addCell(new Phrase("\n",paraFont));
         OTable.addCell(new Phrase("\n",paraFont));
 
