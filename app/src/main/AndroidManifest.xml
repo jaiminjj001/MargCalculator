@@ -15,16 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".InterestReturnCalculator"
+        <activity android:name="alita.infotech.margcalculator.InterestReturnCalculator"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".MainActivity"
+        <activity android:name="alita.infotech.margcalculator.MainActivity"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EMICalculator"
+        <activity android:name="alita.infotech.margcalculator.EMICalculator"
             android:windowSoftInputMode="adjustResize"/>
 
         <meta-data
