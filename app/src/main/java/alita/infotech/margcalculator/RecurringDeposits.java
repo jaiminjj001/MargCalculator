@@ -177,9 +177,9 @@ public class RecurringDeposits extends Fragment {
         EditText interestRate = view.findViewById(R.id.Rdeposit_interest_input);
         EditText tenure = view.findViewById(R.id.Rdeposit_period_input);
         if(RecurringAmount!=0.0 && InterestRate!=0.0 && Tenure!=0) {
-            depositAmount.setText(RecurringAmount.toString());
-            interestRate.setText(InterestRate.toString());
-            tenure.setText(Tenure.toString());
+            depositAmount.setText(String.format("%.2f",RecurringAmount));
+            interestRate.setText(String.format("%.2f",InterestRate));
+            tenure.setText(String.format("%.2f",Tenure));
         }
     }
 

@@ -205,7 +205,7 @@ public class ReducingInterest extends Fragment {
             EditText interest = view.findViewById(R.id.interest_input);
             EditText period = view.findViewById(R.id.period_input);
             EditText processing_fee = view.findViewById(R.id.processing_fees_input);
-            amount.setText(Amount.toString());
+            amount.setText(String.format("%.2f",Amount));
             interest.setText(Interest.toString());
             RadioGroup radioGroup = view.findViewById(R.id.PeriodSelector);
             RadioButton button = view.findViewById(radioGroup.getCheckedRadioButtonId());
