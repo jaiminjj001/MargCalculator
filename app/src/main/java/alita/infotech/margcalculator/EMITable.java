@@ -76,15 +76,15 @@ public class EMITable extends Fragment {
 
 
         TextView LoanAmountValue = myView.findViewById(R.id.loanAmountValue);
-        LoanAmountValue.setText(String.format("\uB029 %.2f", argAmount));
+        LoanAmountValue.setText(String.format("%.2f", argAmount));
 
         argTotalAmount = Math.round(argTotalAmount * scale) / scale;
         TextView TotalAmountValue  = myView.findViewById(R.id.TotalAmountValue);
-        TotalAmountValue.setText(String.format("\uB029 %.2f", argTotalAmount));
+        TotalAmountValue.setText(String.format("%.2f", argTotalAmount));
 
         argEMI = Math.round(argEMI * scale) / scale;
         TextView EmiPerMonthValue = myView.findViewById(R.id.EmiPerMonthValue);
-        EmiPerMonthValue.setText(String.format("\uB029 %.2f", argEMI));
+        EmiPerMonthValue.setText(String.format("%.2f", argEMI));
 
         TextView MonthsValue = myView.findViewById(R.id.MonthsValue);
         if(args.containsKey("years")) {
