@@ -80,7 +80,7 @@ public class FDOutput extends Fragment {
         }
         double scale = Math.pow(10,2);
         InterestEarned = Math.round(InterestEarned*scale)/scale;
-        interestRate.setText(String.format("%.2f $", InterestRate));
+        interestRate.setText(String.format("%.2f", InterestRate)+"%");
         interestFreq.setText(InterestFrequency);
         tenure.setText(String.format("%.2f", Tenure));
         maturityAmount.setText(String.format("%.2f", MaturityAmount));

@@ -46,9 +46,9 @@ public class IRCompareOutput extends Fragment {
         TextView interestEarned2 = view.findViewById(R.id.irco_Interest_earned_output2);
 
         Interest1 = args.getDouble("interest1");
-        interest1.setText(String.format("%.2f %",Interest1));
+        interest1.setText(String.format("%.2f",Interest1)+"%");
         Interest2 = args.getDouble("interest2");
-        interest2.setText(String.format("%.2f %",Interest2));
+        interest2.setText(String.format("%.2f",Interest2)+"%");
 
         Tenure1 = args.getInt("tenure1");
         tenure1.setText(String.format("%.2f months",Tenure1));

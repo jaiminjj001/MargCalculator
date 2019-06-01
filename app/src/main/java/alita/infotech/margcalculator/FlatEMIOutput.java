@@ -82,9 +82,9 @@ public class FlatEMIOutput extends Fragment {
         }
         else
             Period.setText(String.format("%.2f months", period));
-        Loan_Amount.setText(String.format("%.2f", Loan_Amount));
-        Interest_Rate.setText(String.format("%.2f %", Interest_Rate));
-        Processing_Rate.setText(String.format("%.2f %", processingRate));
+        Loan_Amount.setText(String.format("%.2f", loanAmount));
+        Interest_Rate.setText(String.format("%.2f", interestRate)+"%");
+        Processing_Rate.setText(String.format("%.2f", processingRate)+"%");
         Total_Amount_output.setText(String.format("%.2f", totalAmount));
         Total_Interest_output.setText(String.format("%.2f", totalInterest));
         EMI_PerMonth.setText(String.format("%.2f", EMI));

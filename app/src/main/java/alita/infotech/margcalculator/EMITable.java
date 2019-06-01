@@ -95,7 +95,7 @@ public class EMITable extends Fragment {
             MonthsValue.setText(String.format("%.2f months", argPeriod));
 
         TextView InterestValue = myView.findViewById(R.id.InterestValue);
-        InterestValue.setText(String.format("%.2f %", argInterest));
+        InterestValue.setText(String.format("%.2f", argInterest)+"%");
 
 
         Integer i=0;

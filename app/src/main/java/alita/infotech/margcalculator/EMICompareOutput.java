@@ -93,10 +93,10 @@ public class EMICompareOutput extends Fragment {
         }
 
         LoanAmount.setText(String.format("%.2f", LoanAmount));
-        InterestRate1.setText(String.format("%.2f %", InterestRate1));
-        InterestRate2.setText(String.format("%.2f %", InterestRate2));
-        ProcessingFees1.setText(String.format("%.2f %", processingRate1));
-        ProcessingFees2.setText(String.format("%.2f %", processingRate2));
+        InterestRate1.setText(String.format("%.2f", InterestRate1)+"%");
+        InterestRate2.setText(String.format("%.2f", InterestRate2)+"%");
+        ProcessingFees1.setText(String.format("%.2f", processingRate1)+"%");
+        ProcessingFees2.setText(String.format("%.2f", processingRate2)+"%");
 
         EMI_perMonth1.setText(String.format("%.2f", EMI1));
         EMI_perMonth2.setText(String.format("%.2f", EMI2));
