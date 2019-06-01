@@ -84,7 +84,7 @@ public class FDOutput extends Fragment {
         interestFreq.setText(InterestFrequency);
         tenure.setText(String.format("%.2f", Tenure));
         maturityAmount.setText(String.format("%.2f", MaturityAmount));
-        interestEarned.setText(String.format("%.2f", interestEarned));
+        interestEarned.setText(String.format("%.2f", InterestEarned));
 
         reset = myView.findViewById(R.id.Odeposit_share);
         reset.setOnClickListener(new View.OnClickListener() {
