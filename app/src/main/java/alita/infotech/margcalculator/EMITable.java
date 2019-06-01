@@ -76,26 +76,27 @@ public class EMITable extends Fragment {
 
 
         TextView LoanAmountValue = myView.findViewById(R.id.loanAmountValue);
-        LoanAmountValue.setText(argAmount.toString());
+        LoanAmountValue.setText(String.format("\uB029 %.2f", argAmount));
 
         argTotalAmount = Math.round(argTotalAmount * scale) / scale;
         TextView TotalAmountValue  = myView.findViewById(R.id.TotalAmountValue);
-        TotalAmountValue.setText(argTotalAmount.toString());
+        TotalAmountValue.setText(String.format("\uB029 %.2f", argTotalAmount));
 
         argEMI = Math.round(argEMI * scale) / scale;
         TextView EmiPerMonthValue = myView.findViewById(R.id.EmiPerMonthValue);
-        EmiPerMonthValue.setText(argEMI.toString());
+        EmiPerMonthValue.setText(String.format("\uB029 %.2f", argEMI));
 
         TextView MonthsValue = myView.findViewById(R.id.MonthsValue);
         if(args.containsKey("years")) {
             argYears = args.getDouble("years");
-            MonthsValue.setText(argYears.toString()+" years");
+            MonthsValue.setText(String.format("%.2f years", argYears));
         }
         else
-            MonthsValue.setText(argPeriod.toString() + " months");
+            MonthsValue.setText(String.format("%.2f months", argPeriod));
 
         TextView InterestValue = myView.findViewById(R.id.InterestValue);
-        InterestValue.setText(argInterest.toString()+" %");
+        InterestValue.setText(String.format("%.2f %", argInterest));
+
 
         Integer i=0;
         argInterest = argInterest/(12*100);
@@ -263,7 +264,7 @@ public class EMITable extends Fragment {
                 balance = Math.round(balance * scale) / scale;
                 temp = balance;
             }
-            Srno.setText(i.toString());
+            Srno.setText(String.format("%d",i));
             Srno.setTextColor(Color.BLACK);
             Srno.setTextSize(20);
             Srno.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
@@ -271,7 +272,7 @@ public class EMITable extends Fragment {
             Srno.setBackground(drawable);
             Srno.setPadding(5,0,0,0);
 
-            Emi.setText(argEMI.toString());
+            Emi.setText(String.format("%.2f",argEMI));
             Emi.setTextColor(Color.BLACK);
             Emi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Emi.setTextSize(20);
@@ -279,7 +280,7 @@ public class EMITable extends Fragment {
             Emi.setBackground(drawable);
             Emi.setPadding(5,0,0,0);
 
-            Interest.setText(interest.toString());
+            Interest.setText(String.format("%.2f",interest));
             Interest.setTextColor(Color.BLACK);
             Interest.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Interest.setTextSize(20);
@@ -287,7 +288,7 @@ public class EMITable extends Fragment {
             Interest.setBackground(drawable);
             Interest.setPadding(5,0,0,0);
 
-            Principal.setText(principal.toString());
+            Principal.setText(String.format("%.2f",principal));
             Principal.setTextColor(Color.BLACK);
             Principal.setTextSize(20);
             Principal.setWidth(300);
@@ -295,7 +296,7 @@ public class EMITable extends Fragment {
             Principal.setBackground(drawable);
             Principal.setPadding(5,0,0,0);
 
-            Balance.setText(balance.toString());
+            Balance.setText(String.format("%.2f",balance));
             Balance.setTextColor(Color.BLACK);
             Balance.setTextSize(20);
             Balance.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);

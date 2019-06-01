@@ -67,24 +67,24 @@ public class FDOutput extends Fragment {
         if(args.getString("type").equals("Recurring")){
             RecurringAmount = args.getDouble("RecurringAmount");
             amountField.setText("Recurring Amount");
-            depositAmount.setText(RecurringAmount.toString());
+            depositAmount.setText(String.format("%.2f", RecurringAmount));
             InterestEarned = MaturityAmount - (RecurringAmount*Tenure);
             toolbar.setTitle("Recurring Deposit");
         }
         else if(args.getString("type").equals("Fixed")){
             DepositAmount = args.getDouble("DepositAmount");
             amountField.setText("Deposit Amount");
-            depositAmount.setText(DepositAmount.toString());
+            depositAmount.setText(String.format("%.2f", DepositAmount));
             InterestEarned = MaturityAmount - DepositAmount;
             toolbar.setTitle("Fixed Deposit");
         }
         double scale = Math.pow(10,2);
         InterestEarned = Math.round(InterestEarned*scale)/scale;
-        interestRate.setText(InterestRate.toString()+" %");
+        interestRate.setText(String.format("%.2f $", InterestRate));
         interestFreq.setText(InterestFrequency);
-        tenure.setText(Tenure.toString());
-        maturityAmount.setText(MaturityAmount.toString());
-        interestEarned.setText(InterestEarned.toString());
+        tenure.setText(String.format("%.2f", Tenure));
+        maturityAmount.setText(String.format("%.2f", MaturityAmount));
+        interestEarned.setText(String.format("%.2f", interestEarned));
 
         reset = myView.findViewById(R.id.Odeposit_share);
         reset.setOnClickListener(new View.OnClickListener() {

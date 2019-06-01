@@ -67,22 +67,22 @@ public class FdRdCompareOutput extends Fragment {
 
         MaturityAmount1 = args.getDouble("maturityAmount1");
         MaturityAmount1 = Math.round(MaturityAmount1*scale)/scale;
-        maturityAmount1.setText(MaturityAmount1.toString());
+        maturityAmount1.setText(String.format("%.2f", MaturityAmount1));
         MaturityAmount2 = args.getDouble("maturityAmount2");
         MaturityAmount2 = Math.round(MaturityAmount2*scale)/scale;
-        maturityAmount2.setText(MaturityAmount2.toString());
+        maturityAmount2.setText(String.format("%.2f", MaturityAmount2));
 
         DepositAmount = args.getDouble("DepositAmount");
-        depositAmount.setText(DepositAmount.toString());
+        depositAmount.setText(String.format("%.2f", DepositAmount));
         RecurringAmount = args.getDouble("RecurringAmount");
-        recurringAmount.setText(RecurringAmount.toString());
+        recurringAmount.setText(String.format("%.2f", RecurringAmount));
 
         InterestEarned1 = MaturityAmount1 - DepositAmount;
         InterestEarned2 = MaturityAmount2 - (RecurringAmount*Tenure2);
         InterestEarned1 = Math.round(InterestEarned1*scale)/scale;
         InterestEarned2 = Math.round(InterestEarned2*scale)/scale;
-        interestEarned1.setText(InterestEarned1.toString());
-        interestEarned2.setText(InterestEarned2.toString());
+        interestEarned1.setText(String.format("%.2f", InterestEarned1));
+        interestEarned2.setText(String.format("%.2f", InterestEarned2));
         return myView;
     }
     private static void hideKeyboardFrom(Context context, View view) {

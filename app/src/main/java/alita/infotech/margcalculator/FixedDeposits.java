@@ -175,9 +175,9 @@ public class FixedDeposits extends Fragment {
         EditText interestRate = view.findViewById(R.id.Fdeposit_interest_input);
         EditText tenure = view.findViewById(R.id.Fdeposit_period_input);
         if(DepositAmount!=0 && InterestRate!=0.0 && Tenure!=0) {
-            depositAmount.setText(DepositAmount.toString());
-            interestRate.setText(InterestRate.toString());
-            tenure.setText(Tenure.toString());
+            depositAmount.setText(String.format("%.2f",DepositAmount));
+            interestRate.setText(String.format("%.2f",InterestRate));
+            tenure.setText(String.format("%.2f",Tenure));
         }
     }
     private static void hideKeyboardFrom(Context context, View view) {

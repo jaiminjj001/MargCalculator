@@ -76,17 +76,17 @@ public class ReducingEMIOutput extends Fragment {
         if(args.containsKey("years")) {
             periodType = "YR";
             years = args.getDouble("years");
-            Period.setText(years.toString()+" years");
+            Period.setText(String.format("%.2f years", years));
         }
         else
-            Period.setText(period.toString() + " months");
-        Loan_Amount.setText(loanAmount.toString());
-        Interest_Rate.setText(interestRate.toString()+" %");
-        Processing_Rate.setText(processingRate.toString()+" %");
-        Total_Amount_output.setText(totalAmount.toString());
-        Total_Interest_output.setText(totalInterest.toString());
-        EMI_PerMonth.setText(EMI.toString());
-        Processing_fees_output.setText(processingFees.toString());
+            Period.setText(String.format("%.2f months", period));
+        Loan_Amount.setText(String.format("%.2f", Loan_Amount));
+        Interest_Rate.setText(String.format("%.2f %", Interest_Rate));
+        Processing_Rate.setText(String.format("%.2f %", processingRate));
+        Total_Amount_output.setText(String.format("%.2f", totalAmount));
+        Total_Interest_output.setText(String.format("%.2f", totalInterest));
+        EMI_PerMonth.setText(String.format("%.2f", EMI));
+        Processing_fees_output.setText(String.format("%.2f", processingFees));
 
         Share = view.findViewById(R.id.share);
         Share.setOnClickListener(new View.OnClickListener() {

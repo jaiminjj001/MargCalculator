@@ -84,29 +84,28 @@ public class EMICompareOutput extends Fragment {
         if(args.containsKey("years1")){
             years1 = args.getDouble("years1");
             years2 = args.getDouble("years2");
-            Period1.setText(years1.toString()+" years");
-            Period2.setText(years2.toString()+" years");
+            Period1.setText(String.format("%.2f years", years1));
+            Period2.setText(String.format("%.2f years", years2));
         }
         else{
-            Period1.setText(period1.toString()+" months");
-            Period2.setText(period2.toString()+" months");
+            Period1.setText(String.format("%.2f months", period1));
+            Period2.setText(String.format("%.2f months", period2));
         }
 
-        LoanAmount.setText(loanAmount.toString());
-        InterestRate1.setText(interest1.toString()+" %");
-        InterestRate2.setText(interest2.toString()+" %");
-        ProcessingFees1.setText(processingRate1.toString()+" %");
-        ProcessingFees2.setText(processingRate2.toString()+" %");
+        LoanAmount.setText(String.format("%.2f", LoanAmount));
+        InterestRate1.setText(String.format("%.2f %", InterestRate1));
+        InterestRate2.setText(String.format("%.2f %", InterestRate2));
+        ProcessingFees1.setText(String.format("%.2f %", processingRate1));
+        ProcessingFees2.setText(String.format("%.2f %", processingRate2));
 
-        EMI_perMonth1.setText(EMI1.toString());
-        EMI_perMonth2.setText(EMI2.toString());
-        Processing_fees_output1.setText(processingFees1.toString());
-        Processing_fees_output2.setText(processingFees2.toString());
-        Total_interest_output1.setText(TotalInterest1.toString());
-        Total_interest_output2.setText(TotalInterest2.toString());
-        Total_amount_output1.setText(TotalAmount1.toString());
-        Total_amount_output2.setText(TotalAmount2.toString());
-
+        EMI_perMonth1.setText(String.format("%.2f", EMI1));
+        EMI_perMonth2.setText(String.format("%.2f", EMI2));
+        Processing_fees_output1.setText(String.format("%.2f", processingFees1));
+        Processing_fees_output2.setText(String.format("%.2f", processingFees2));
+        Total_interest_output1.setText(String.format("%.2f", TotalInterest1));
+        Total_interest_output2.setText(String.format("%.2f", TotalInterest2));
+        Total_amount_output1.setText(String.format("%.2f", TotalAmount1));
+        Total_amount_output2.setText(String.format("%.2f", TotalAmount2));
         return  myView;
     }
 }

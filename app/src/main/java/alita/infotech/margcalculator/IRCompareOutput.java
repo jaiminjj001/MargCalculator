@@ -46,14 +46,14 @@ public class IRCompareOutput extends Fragment {
         TextView interestEarned2 = view.findViewById(R.id.irco_Interest_earned_output2);
 
         Interest1 = args.getDouble("interest1");
-        interest1.setText(Interest1.toString()+" %");
+        interest1.setText(String.format("%.2f %",Interest1));
         Interest2 = args.getDouble("interest2");
-        interest2.setText(Interest2.toString()+" %");
+        interest2.setText(String.format("%.2f %",Interest2));
 
         Tenure1 = args.getInt("tenure1");
-        tenure1.setText(Tenure1.toString()+" months");
+        tenure1.setText(String.format("%.2f months",Tenure1));
         Tenure2 = args.getInt("tenure2");
-        tenure2.setText(Tenure2.toString()+" months");
+        tenure2.setText(String.format("%.2f months",Tenure2));
 
         InterestFrequency1 = args.getString("frequency1");
         interestFrequency1.setText(InterestFrequency1);
@@ -62,15 +62,15 @@ public class IRCompareOutput extends Fragment {
 
         MaturityAmount1 = args.getDouble("maturityAmount1");
         MaturityAmount1 = Math.round(MaturityAmount1*scale)/scale;
-        maturityAmount1.setText(MaturityAmount1.toString());
+        maturityAmount1.setText(String.format("%.2f",MaturityAmount1));
         MaturityAmount2 = args.getDouble("maturityAmount2");
         MaturityAmount2 = Math.round(MaturityAmount2*scale)/scale;
-        maturityAmount2.setText(MaturityAmount2.toString());
+        maturityAmount2.setText(String.format("%.2f",MaturityAmount2));
 
         if(args.containsKey("DepositAmount")){
             amountField.setText("Deposit Amount");
             Amount = args.getDouble("DepositAmount");
-            amount.setText(Amount.toString());
+            amount.setText(String.format("%.2f",Amount));
             InterestEarned1 = MaturityAmount1 - Amount;
             InterestEarned2 = MaturityAmount2 - Amount;
             toolbar.setTitle("Fixed Deposit");
@@ -78,7 +78,7 @@ public class IRCompareOutput extends Fragment {
         else if(args.containsKey("RecurringAmount")){
             amountField.setText("Recurring Amount");
             Amount = args.getDouble("RecurringAmount");
-            amount.setText(Amount.toString());
+            amount.setText(String.format("%.2f",Amount));
             InterestEarned1 = MaturityAmount1 - (Amount*Tenure1);
             InterestEarned2 = MaturityAmount2 - (Amount*Tenure2);
             toolbar.setTitle("Recurring Deposit");
@@ -86,8 +86,8 @@ public class IRCompareOutput extends Fragment {
 
         InterestEarned1 = Math.round(InterestEarned1*scale)/scale;
         InterestEarned2 = Math.round(InterestEarned2*scale)/scale;
-        interestEarned1.setText(InterestEarned1.toString());
-        interestEarned2.setText(InterestEarned2.toString());
+        interestEarned1.setText(String.format("%.2f",InterestEarned1));
+        interestEarned2.setText(String.format("%.2f",InterestEarned2));
         return view;
     }
 }
