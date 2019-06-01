@@ -161,7 +161,7 @@ public class FlatEMIOutput extends Fragment {
 
         ITable.addCell(new Phrase("Loan Amount",font));
         ITable.addCell(new Phrase(":",font));
-        ITable.addCell(new Phrase("Rs. "+loanAmount.toString(),font));
+        ITable.addCell(new Phrase(String.format("Rs. %.2f",loanAmount),font));
 
         ITable.addCell(new Phrase("Interest %(Per Year)",font));
         ITable.addCell(new Phrase(":",font));
@@ -186,19 +186,19 @@ public class FlatEMIOutput extends Fragment {
 
         OTable.addCell(new Phrase("EMI PerMonth",font));
         OTable.addCell(new Phrase(":",font));
-        OTable.addCell(new Phrase("Rs. "+EMI.toString(),font));
+        OTable.addCell(new Phrase(String.format("Rs. %.2f",EMI),font));
 
         OTable.addCell(new Phrase("Processing Fees",font));
         OTable.addCell(new Phrase(":",font));
-        OTable.addCell(new Phrase("Rs. "+processingFees.toString(),font));
+        OTable.addCell(new Phrase(String.format("Rs. %.2f",processingFees),font));
 
         OTable.addCell(new Phrase("Total Interest",font));
         OTable.addCell(new Phrase(":",font));
-        OTable.addCell(new Phrase("Rs. "+totalInterest.toString(),font));
+        OTable.addCell(new Phrase(String.format("Rs. %.2f",totalInterest),font));
 
         OTable.addCell(new Phrase("Total Amount",font));
         OTable.addCell(new Phrase(":",font));
-        OTable.addCell(new Phrase("Rs. "+totalAmount.toString(),font));
+        OTable.addCell(new Phrase(String.format("Rs. %.2f",totalAmount),font));
 
         Document doc = new Document();
         try {
