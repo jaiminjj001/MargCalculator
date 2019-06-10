@@ -94,7 +94,7 @@ public class ReducingInterest extends Fragment {
                     double temp;
                     temp = Double.valueOf(period.getText().toString());
                     RadioButton selectedPeriod = view.findViewById(radioGroup.getCheckedRadioButtonId());
-                    if (selectedPeriod.getText().equals("YR")) {
+                    if (selectedPeriod.getText().equals("Years")) {
                         temp*=12;
                         Period = (int)temp;
                         years = Double.valueOf(Period)/12;
@@ -209,7 +209,7 @@ public class ReducingInterest extends Fragment {
             interest.setText(Interest.toString());
             RadioGroup radioGroup = view.findViewById(R.id.PeriodSelector);
             RadioButton button = view.findViewById(radioGroup.getCheckedRadioButtonId());
-            if(button.getText().toString().equals("YR")){
+            if(button.getText().toString().equals("Years")){
                 period.setText(years.toString());
             }
             else

@@ -81,7 +81,7 @@ public class FlatEMIOutput extends Fragment {
             Period.setText(String.format("%.2f years", years));
         }
         else
-            Period.setText(String.format("%.2f months", period));
+            Period.setText(String.format("%d months", period));
         Loan_Amount.setText(String.format("%.2f", loanAmount));
         Interest_Rate.setText(String.format("%.2f", interestRate)+"%");
         Processing_Rate.setText(String.format("%.2f", processingRate)+"%");

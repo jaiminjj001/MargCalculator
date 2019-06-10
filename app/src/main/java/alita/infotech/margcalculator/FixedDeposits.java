@@ -177,7 +177,7 @@ public class FixedDeposits extends Fragment {
         if(DepositAmount!=0 && InterestRate!=0.0 && Tenure!=0) {
             depositAmount.setText(String.format("%.2f",DepositAmount));
             interestRate.setText(String.format("%.2f",InterestRate));
-            tenure.setText(String.format("%.2f",Tenure));
+            tenure.setText(String.format("%d",Tenure));
         }
     }
     private static void hideKeyboardFrom(Context context, View view) {

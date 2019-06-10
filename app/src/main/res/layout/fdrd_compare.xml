@@ -25,9 +25,9 @@
                 android:id="@+id/fdrd_bank1"
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
-                android:text="@string/bank1"
+                android:text="@string/fd"
                 android:textStyle="bold"
-                android:textColor="@color/colorAmber_900"
+                android:textColor="@color/bank1"
                 android:textSize="20sp"
                 android:gravity="center"
                 android:fontFamily="@font/roboto"
@@ -41,11 +41,11 @@
                 android:layout_width="200dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="@string/bank2"
+                android:text="@string/rd"
                 android:textStyle="bold"
                 android:fontFamily="@font/roboto"
                 android:textSize="20sp"
-                android:textColor="@color/main_gradient2"
+                android:textColor="@color/bank2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </LinearLayout>
@@ -323,6 +323,7 @@
                 android:id="@+id/fdrd_compare_interest_frequency_input2"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:layout_marginStart="20dp"
                 android:layout_height="40dp"
                 android:prompt="@string/frequency_prompt"/>
         </LinearLayout>
@@ -343,14 +344,13 @@
                 android:id="@+id/fdrd_compare_calculate"
                 style="?attr/buttonBarButtonStyle"
                 android:textAllCaps="false"
-                android:background="@drawable/calculate_ripple"
+                android:background="@drawable/calculate_button_ripple"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/calculate"
                 android:textColor="@color/inputs"
-                android:textStyle="bold"
                 android:textSize="22sp"/>
 
             <Button
@@ -358,15 +358,14 @@
                 style="?attr/buttonBarButtonStyle"
                 android:background="@drawable/reset_compare_ripple"
                 android:textAllCaps="false"
-                android:layout_width="150dp"
                 android:layout_height="match_parent"
+                android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_weight="1"
-                android:textColor="@color/LBlack"
+                android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textSize="22sp"
-                android:textStyle="bold"
                 android:text="@string/reset" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

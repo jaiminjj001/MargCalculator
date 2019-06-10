@@ -92,7 +92,7 @@ public class EMITable extends Fragment {
             MonthsValue.setText(String.format("%.2f years", argYears));
         }
         else
-            MonthsValue.setText(String.format("%.2f months", argPeriod));
+            MonthsValue.setText(String.format("%d months", argPeriod));
 
         TextView InterestValue = myView.findViewById(R.id.InterestValue);
         InterestValue.setText(String.format("%.2f", argInterest)+"%");
@@ -100,7 +100,6 @@ public class EMITable extends Fragment {
 
         Integer i=0;
         argInterest = argInterest/(12*100);
-
         tableLayout = myView.findViewById(R.id.displayEMITable);
         tableLayout.setDrawingCacheEnabled(true);
         Resources resources = getResources();
@@ -115,7 +114,13 @@ public class EMITable extends Fragment {
             layoutParams.setMargins(0,0,0,0);
             row.setLayoutParams(layoutParams);
             row.setMinimumWidth(1100);
-            row.setBackgroundColor(Color.WHITE);
+            if(j%2==0){
+                row.setBackgroundColor(getResources().getColor(R.color.row_even));
+            }
+            else{
+                row.setBackgroundColor(Color.WHITE);
+            }
+
             row.setPadding(2,0,2,2);
             try {
                 font = new Font(BaseFont.createFont(BaseFont.TIMES_ROMAN, BaseFont.WINANSI, false), 16, Font.NORMAL);
@@ -152,42 +157,42 @@ public class EMITable extends Fragment {
                 TextView Balance = new TextView(getContext());
 
                 Srno.setText("Sr.No");
-                Srno.setTextColor(Color.RED);
+                Srno.setTextColor(Color.BLACK);
                 Srno.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Srno.setTextSize(20);
                 Srno.setWidth(150);
                 Srno.setPadding(5,0,0,0);
-                Srno.setBackground(drawable);
+//                Srno.setBackground(drawable);
 
                 Emi.setText("EMI\\mo");
-                Emi.setTextColor(Color.RED);
+                Emi.setTextColor(Color.BLACK);
                 Emi.setTextSize(20);
                 Emi.setWidth(300);
                 Emi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                Emi.setBackground(drawable);
+//                Emi.setBackground(drawable);
                 Emi.setPadding(5,0,0,0);
 
                 Interest.setText("Interest");
-                Interest.setTextColor(Color.RED);
+                Interest.setTextColor(Color.BLACK);
                 Interest.setTextSize(20);
                 Interest.setWidth(300);
                 Interest.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-                Interest.setBackground(drawable);
+//                Interest.setBackground(drawable);
                 Interest.setPadding(5,0,0,0);
 
                 Principal.setText("Principle");
-                Principal.setTextColor(Color.RED);
+                Principal.setTextColor(Color.BLACK);
                 Principal.setTextSize(20);
                 Principal.setWidth(300);
-                Principal.setBackground(drawable);
+//                Principal.setBackground(drawable);
                 Principal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Principal.setPadding(5,0,0,0);
 
                 Balance.setText("Balance");
-                Balance.setTextColor(Color.RED);
+                Balance.setTextColor(Color.BLACK);
                 Balance.setTextSize(20);
                 Balance.setWidth(300);
-                Balance.setBackground(drawable);
+                //Balance.setBackground(drawable);
                 Balance.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
                 Balance.setPadding(5,0,0,0);
 
@@ -196,9 +201,10 @@ public class EMITable extends Fragment {
                 row1.addView(Interest);
                 row1.addView(Principal);
                 row1.addView(Balance);
+                row1.setBackgroundColor(getResources().getColor(R.color.toolbar));
                 tableLayout.addView(row1,i);
 
-                font.setColor(BaseColor.RED);
+                font.setColor(BaseColor.BLACK);
                 cell1.addElement(new Phrase("Sr.NO",font));
                 cell2.addElement(new Phrase("EMI",font));
                 cell3.addElement(new Phrase("Interest",font));
@@ -269,7 +275,7 @@ public class EMITable extends Fragment {
             Srno.setTextSize(20);
             Srno.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Srno.setWidth(150);
-            Srno.setBackground(drawable);
+//            Srno.setBackground(drawable);
             Srno.setPadding(5,0,0,0);
 
             Emi.setText(String.format("%.2f",argEMI));
@@ -277,7 +283,7 @@ public class EMITable extends Fragment {
             Emi.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Emi.setTextSize(20);
             Emi.setWidth(300);
-            Emi.setBackground(drawable);
+//            Emi.setBackground(drawable);
             Emi.setPadding(5,0,0,0);
 
             Interest.setText(String.format("%.2f",interest));
@@ -285,7 +291,7 @@ public class EMITable extends Fragment {
             Interest.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Interest.setTextSize(20);
             Interest.setWidth(300);
-            Interest.setBackground(drawable);
+//            Interest.setBackground(drawable);
             Interest.setPadding(5,0,0,0);
 
             Principal.setText(String.format("%.2f",principal));
@@ -293,7 +299,7 @@ public class EMITable extends Fragment {
             Principal.setTextSize(20);
             Principal.setWidth(300);
             Principal.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            Principal.setBackground(drawable);
+//            Principal.setBackground(drawable);
             Principal.setPadding(5,0,0,0);
 
             Balance.setText(String.format("%.2f",balance));
@@ -301,7 +307,7 @@ public class EMITable extends Fragment {
             Balance.setTextSize(20);
             Balance.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
             Balance.setWidth(300);
-            Balance.setBackground(drawable);
+//            Balance.setBackground(drawable);
             Balance.setPadding(5,0,0,0);
 
             row.addView(Srno);

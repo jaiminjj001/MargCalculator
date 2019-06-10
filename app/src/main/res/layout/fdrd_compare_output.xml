@@ -25,7 +25,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/fd"
                 android:textStyle="bold"
-                android:textColor="@color/colorAmber_900"
+                android:textColor="@color/bank1"
                 android:textSize="20sp"
                 android:gravity="center"/>
             <TextView
@@ -38,7 +38,7 @@
                 android:text="@string/rd"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/main_gradient2"/>
+                android:textColor="@color/bank2"/>
         </LinearLayout>
 
 
@@ -72,8 +72,7 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:text="@string/deposit_amount"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="18sp"/>
                     <TextView
                         android:id="@+id/fdrdco_recurring_amount"
                         android:layout_width="0dp"
@@ -84,8 +83,7 @@
                         android:layout_weight="1"
                         android:gravity="start"
                         android:text="@string/recurring_amount"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+                        android:textSize="18sp"/>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -102,6 +100,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="10dp"
                         android:gravity="start"
+                        android:textColor="@color/black"
                         android:textSize="18sp"
                         android:textStyle="bold" />
                     <TextView
@@ -111,6 +110,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto"
                         android:layout_weight="1"
+                        android:textColor="@color/black"
                         android:layout_marginStart="10dp"
                         android:gravity="start"
                         android:textSize="18sp"
@@ -135,8 +135,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/dInterest"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/fdrdco_Cinterest_rate_value1"
@@ -147,16 +146,19 @@
                     android:gravity="start"
                     android:fontFamily="@font/roboto"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/fdrdco_Cinterest_rate_value2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:fontFamily="@font/roboto"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="5dp"
+                    android:layout_marginEnd="10dp"
                     android:layout_weight="1"
+                    android:fontFamily="@font/roboto"
                     android:gravity="start"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -176,8 +178,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/tenure"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/fdrdco_Ctenure_value1"
@@ -187,6 +188,7 @@
                     android:fontFamily="@font/roboto"
                     android:layout_weight="1"
                     android:gravity="start"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
@@ -198,6 +200,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:gravity="start"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -218,8 +221,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/interest_frequency"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/fdrdco_Cfrequency_value1"
@@ -229,6 +231,7 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginStart="5dp"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
                     android:gravity="start"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -242,6 +245,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="@font/roboto"/>
             </LinearLayout>
@@ -272,6 +276,7 @@
                     android:fontFamily="@font/roboto"
                     android:textSize="16sp"
                     android:gravity="center"
+                    android:textStyle="bold"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"/>
                 <LinearLayout
@@ -332,6 +337,7 @@
                     android:text="@string/interest_earned"
                     android:fontFamily="@font/roboto"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"/>

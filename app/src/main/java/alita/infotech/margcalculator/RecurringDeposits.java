@@ -179,7 +179,7 @@ public class RecurringDeposits extends Fragment {
         if(RecurringAmount!=0.0 && InterestRate!=0.0 && Tenure!=0) {
             depositAmount.setText(String.format("%.2f",RecurringAmount));
             interestRate.setText(String.format("%.2f",InterestRate));
-            tenure.setText(String.format("%.2f",Tenure));
+            tenure.setText(String.format("%d",Tenure));
         }
     }
 

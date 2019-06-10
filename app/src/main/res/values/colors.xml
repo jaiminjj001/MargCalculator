@@ -21,10 +21,16 @@
     <color name="output_background">#EFEFEF</color>
     <color name="hint">#D7686868</color>
     <color name="background">#DBD9C5</color>
-    <color name="toolbar">#56C81B</color>
+    <color name="toolbar">#35bdf9</color>
     <color name="toolbar1">#6656C81B</color>
+    <color name="toolbar2">#9F01008A</color>
     <color name="buttons">#E4E4E4</color>
     <color name="textbox">#414AA5</color>
     <color name="black">#000000</color>
     <color name="LBlack">#444444</color>
+    <color name="selected_tab">#01008a</color>
+    <color name="bank1">#8dc73f</color>
+    <color name="bank2">#2d6fc3</color>
+    <color name="bank_border">#49c5dc</color>
+    <color name="row_even">#cae0ed</color>
 </resources>

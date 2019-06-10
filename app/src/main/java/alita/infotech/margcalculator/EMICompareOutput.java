@@ -88,8 +88,8 @@ public class EMICompareOutput extends Fragment {
             Period2.setText(String.format("%.2f years", years2));
         }
         else{
-            Period1.setText(String.format("%.2f months", period1));
-            Period2.setText(String.format("%.2f months", period2));
+            Period1.setText(String.format("%d months", period1));
+            Period2.setText(String.format("%d months", period2));
         }
 
         LoanAmount.setText(String.format("%.2f", loanAmount));

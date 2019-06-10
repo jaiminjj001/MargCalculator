@@ -12,8 +12,10 @@
     <string name="dInterest">Interest Rate</string>
     <string name="interest">Enter Interest Rate</string>
     <string name="rate">Rate</string>
-    <string name="year">YR</string>
-    <string name="month">MO</string>
+    <string name="year">Years</string>
+    <string name="yr">YR</string>
+    <string name="mo">MO</string>
+    <string name="month">Months</string>
     <string name="period">Enter Period</string>
     <string name="cperiod">Period</string>
     <string name="processing_fees">Enter Processing Fees</string>

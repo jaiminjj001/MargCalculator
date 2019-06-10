@@ -25,7 +25,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/bank1"
                 android:textStyle="bold"
-                android:textColor="@color/colorAmber_900"
+                android:textColor="@color/bank1"
                 android:textSize="20sp"
                 android:gravity="center"/>
             <TextView
@@ -38,7 +38,7 @@
                 android:text="@string/bank2"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/main_gradient2"/>
+                android:textColor="@color/bank2"/>
         </LinearLayout>
 
 
@@ -68,8 +68,7 @@
                     android:layout_weight="2"
                     android:gravity="start"
                     android:text="@string/amount"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/Cloan_amount_value"
@@ -80,6 +79,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="10dp"
                     android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="18sp"
@@ -103,8 +103,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/dInterest"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/Cinterest_rate_value1"
@@ -114,6 +113,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:fontFamily="@font/roboto"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
@@ -123,6 +123,7 @@
                     android:layout_marginEnd="10dp"
                     android:fontFamily="@font/roboto"
                     android:layout_marginStart="5dp"
+                    android:textColor="@color/black"
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="18sp"
@@ -144,8 +145,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/loan_tenure"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/Cperiod_value1"
@@ -155,6 +155,7 @@
                     android:fontFamily="@font/roboto"
                     android:layout_weight="1"
                     android:gravity="start"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
                 <TextView
@@ -167,6 +168,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
             </LinearLayout>
             <LinearLayout
@@ -186,8 +188,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:text="@string/processing_fees_output"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:id="@+id/Cprocessing_fees_value1"
@@ -199,6 +200,7 @@
                     android:layout_weight="1"
                     android:gravity="start"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/Cprocessing_fees_value2"
@@ -211,6 +213,7 @@
                     android:gravity="start"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:fontFamily="@font/roboto"/>
             </LinearLayout>
         </LinearLayout>
@@ -239,6 +242,7 @@
                     android:text="@string/emi_per_month"
                     android:fontFamily="@font/roboto"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"/>
@@ -293,16 +297,18 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/border"
                 android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/Ctotal_processing_fees"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/processing_fees_output"
-                    android:fontFamily="@font/roboto"
-                    android:textSize="16sp"
-                    android:gravity="center"
                     android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/roboto"
+                    android:gravity="center"
+                    android:text="@string/processing_fees_output"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -361,6 +367,7 @@
                     android:text="@string/total_interest"
                     android:fontFamily="@font/roboto"
                     android:textSize="16sp"
+                    android:textStyle="bold"
                     android:gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="5dp"/>
@@ -424,6 +431,7 @@
                     android:textSize="16sp"
                     android:gravity="center"
                     android:layout_marginStart="10dp"
+                    android:textStyle="bold"
                     android:layout_marginTop="5dp"/>
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -12,6 +12,7 @@ import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.example.margcalculator.R;
 import com.google.android.gms.ads.AdListener;
@@ -29,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     final int MY_PERMISSIONS_REQUEST_WRITE_STORAGE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
-
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -39,6 +40,10 @@ public class MainActivity extends AppCompatActivity {
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
         StrictMode.setVmPolicy(builder.build());
         setContentView(R.layout.activity_main);
+        ViewFlipper viewFlipper = findViewById(R.id.flipperid);
+        viewFlipper.setFlipInterval(2000);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.startFlipping();
         emiCalculator = (Button)findViewById(R.id.EMIButton);
         emiCalculator.setOnClickListener(new View.OnClickListener() {
             @Override

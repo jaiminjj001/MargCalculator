@@ -38,6 +38,7 @@ public class FlatInterest extends Fragment {
     Double years = 0.0;
     Double Interest = 0.0;
     Double Amount = 0.0;
+    Double scale;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,7 +91,7 @@ public class FlatInterest extends Fragment {
                     Amount = Double.valueOf(amount.getText().toString());
                     Interest = Double.valueOf(interest.getText().toString());
                     double temp = Double.valueOf(period.getText().toString());
-                    if (selectedPeriod.getText().equals("YR")) {
+                    if (selectedPeriod.getText().equals("Years")) {
                         temp*=12;
                         Period = (int)temp;
                         years = Double.valueOf(Period)/12.0;
@@ -203,7 +204,9 @@ public class FlatInterest extends Fragment {
             interest.setText(Interest.toString());
             RadioGroup radioGroup = view.findViewById(R.id.FPeriodSelector);
             RadioButton button = view.findViewById(radioGroup.getCheckedRadioButtonId());
-            if(button.getText().toString().equals("YR")){
+            if(button.getText().toString().equals("Years")){
+                scale = Math.pow(10,2);
+                years = Math.round(years*scale)/scale;
                 period.setText(years.toString());
             }
             else

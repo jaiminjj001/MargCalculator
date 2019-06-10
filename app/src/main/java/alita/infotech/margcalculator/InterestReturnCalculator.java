@@ -28,7 +28,8 @@ public class InterestReturnCalculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_interest_return_calculator);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-6033789502768800/7093864807");///alita
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712"); // debug id
+        // mInterstitialAd.setAdUnitId("ca-app-pub-6033789502768800/7093864807"); //live id
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         Toolbar toolbar = findViewById(R.id.ir_toolbar);
         toolbar.setTitle("Interest/Return Calculator");

@@ -29,7 +29,8 @@ public class EMICalculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_emicalculator);
         mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId("ca-app-pub-6033789502768800/7093864807");
+        //mInterstitialAd.setAdUnitId("ca-app-pub-6033789502768800/7093864807");  //live id
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");  //debug id
         mInterstitialAd.loadAd(new AdRequest.Builder().build());
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle("EMI CALCULATOR");

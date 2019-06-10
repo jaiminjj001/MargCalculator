@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
             android:fontFamily="@font/roboto"
             android:textStyle="bold"
@@ -66,12 +66,12 @@
             android:id="@+id/Finterest"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:layout_marginTop="5dp"
             android:text="@string/dInterest"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="14sp"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Famount_input"
@@ -106,8 +106,8 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="14sp"
-            android:gravity="center"
             android:layout_marginTop="5dp"
+            android:gravity="center"
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Finterest_input"
@@ -124,7 +124,7 @@
             <EditText
                 android:id="@+id/Fperiod_input"
                 android:layout_width="0dp"
-                android:layout_weight="2"
+                android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:background="@drawable/rounded_inputs"
                 android:hint="@string/period"
@@ -224,13 +224,12 @@
             android:layout_marginTop="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/calculate_ripple"
+            android:background="@drawable/calculate_button_ripple"
             android:fontFamily="@font/roboto"
             android:text="@string/calculate"
             android:textColor="@color/inputs"
-            android:textSize="18sp"
+            android:textSize="22sp"
             android:textAllCaps="false"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Fprocessing_fees_input"/>
@@ -256,10 +255,9 @@
                 android:fontFamily="@font/roboto"
                 android:background="@drawable/reset_compare_ripple"
                 android:text="@string/reset"
-                android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="@color/LBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="22sp" />
 
             <Button
                 android:id="@+id/Fcompare"
@@ -271,10 +269,9 @@
                 android:background="@drawable/reset_compare_ripple"
                 android:layout_marginStart="10dp"
                 android:text="@string/compare"
-                android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="@color/LBlack"
-                android:textSize="18sp" />
+                android:textColor="@color/black"
+                android:textSize="22sp" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
