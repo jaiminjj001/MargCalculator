@@ -178,7 +178,7 @@
                 android:hint="@string/tenure_input"
                 android:textSize="18sp"
                 android:fontFamily="@font/roboto"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:textColorHint="@color/hint"/>
@@ -239,7 +239,7 @@
                 android:hint="@string/tenure_input"
                 android:textSize="18sp"
                 android:fontFamily="@font/roboto"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 android:layout_marginStart="5dp"
                 android:layout_gravity="end"
                 android:paddingLeft="10dp"

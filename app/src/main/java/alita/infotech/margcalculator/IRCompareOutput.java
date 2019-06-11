@@ -51,9 +51,9 @@ public class IRCompareOutput extends Fragment {
         interest2.setText(String.format("%.2f",Interest2)+"%");
 
         Tenure1 = args.getInt("tenure1");
-        tenure1.setText(String.format("%.2f months",Tenure1));
+        tenure1.setText(String.format("%d months",Tenure1));
         Tenure2 = args.getInt("tenure2");
-        tenure2.setText(String.format("%.2f months",Tenure2));
+        tenure2.setText(String.format("%d months",Tenure2));
 
         InterestFrequency1 = args.getString("frequency1");
         interestFrequency1.setText(InterestFrequency1);
